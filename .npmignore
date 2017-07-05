@@ -1,0 +1,15 @@
+# generated
+/.idea
+/stats.json
+/mb-react-tinymce-*
+
+# source
+/source
+/example
+
+# config files
+/config
+/.gitignore
+/.npmignore
+/.eslintrc.js
+/__generate_translation__.js
