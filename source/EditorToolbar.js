@@ -234,8 +234,8 @@ class EditorToolbar extends PureComponent {
       inputFileElement.value = ''
 
       const pendingPromise = uploadSingleAsset(imageFile)
-        .then(({ image: src }) => {
-          tinyMCE.activeEditor.insertContent(`<img src=${src} />`)
+        .then(({ image, width }) => {
+          tinyMCE.activeEditor.insertContent(`<img src=${image} width="${Math.min(width, 500)}" />`)
         })
         .catch((error) => showAlertModal({
           title: TRANSLATE('TinyMCE:alert:upload-error'),

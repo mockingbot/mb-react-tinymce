@@ -49,6 +49,7 @@ const CONTENT_STYLE_SIZE_LIST = [
 ]
 
 function initExample ({ rootElement, locale }) {
+  // simple Redux-like store
   let state = {
     locale,
     isLock: false,
@@ -63,16 +64,21 @@ function initExample ({ rootElement, locale }) {
     renderExample(state)
   }
 
+  // pre-connected methods
   const showAlertModal = ({ title, message }) => setState({ modal: { title, message } })
   const showPendingModal = ({ pendingPromise, title, message }) => setState({ modal: { pendingPromise, title, message } })
   const doCloseExampleModal = () => setState({ modal: null })
-  const uploadSingleAsset = (asset) => new Promise((resolve, reject) => {
+  const uploadSingleAsset = (imageFile) => new Promise((resolve, reject) => {
     const reader = new window.FileReader()
-    reader.readAsDataURL(asset)
-    // reader.addEventListener('load', () => reject(new Error('Test Error Message'))) // test with Error
-    reader.addEventListener('load', () => setTimeout(() => resolve({ image: reader.result }), 2000)) // test with delay
+    reader.readAsDataURL(imageFile)
+    reader.addEventListener('load', () => resolve(reader.result))
     reader.addEventListener('error', reject)
-  })
+  }).then((imageDataURL) => new Promise((resolve, reject) => {
+    const imgElement = document.createElement('img')
+    imgElement.addEventListener('load', () => resolve({ image: imageDataURL, width: imgElement.width, height: imgElement.height }))
+    imgElement.addEventListener('error', reject)
+    imgElement.src = imageDataURL
+  })).then((result) => new Promise((resolve) => setTimeout(() => resolve(result), 2000))) // add 2sec delay for debug
   const changeLocale = (locale) => {
     SET_LOCALE(locale)
     setState({ locale: GET_LOCALE() })
@@ -82,6 +88,7 @@ function initExample ({ rootElement, locale }) {
     setState({ value, modal: { title: 'Edit Result', message: valueBrief } })
   }
 
+  // render
   function renderExample ({ locale, isLock, value, isActive, contentStyle, modal }) {
     ReactDOM.render(<div className={CSS_EXAMPLE_ROOT}>
       <div className="button-row">
@@ -142,8 +149,10 @@ function initExample ({ rootElement, locale }) {
     </div>, rootElement)
   }
 
+  // trigger initial render
   changeLocale(locale)
 
+  // return for Debug
   return {
     getState,
     setState,
