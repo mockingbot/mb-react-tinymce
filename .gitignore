@@ -40,10 +40,9 @@ jspm_packages
 .idea
 
 # generated
-/source/__utils__/translation
 /library
+/source/__utils__/translation
 /example/index.js
 /example/index.css
-/example/testData
 /stats.json
 /mb-react-tinymce-*
