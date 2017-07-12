@@ -1,7 +1,5 @@
-/**
- * This is a pre-compile script, used to generate script / data for app
- * This file will and should not be referenced from React-Native code
- */
+// This is a pre-compile script, used to generate script / data for app
+// This file should not be referenced from React code
 
 const NodeModulePath = require('path')
 const NodeModuleFS = require('fs')
@@ -34,9 +32,9 @@ function compileLocaleData (locale, data, debugMessage = '') {
   try {
     return new MessageFormat(locale).compile(data).toString()
   } catch (error) {
-    console.log('[Error][Compile]', locale, data, debugMessage)
-    console.log(error.message)
-    console.log(JSON.stringify(error.location, null, ' '))
+    console.warn('[Error][Compile]', locale, data, debugMessage)
+    console.warn(error.message)
+    console.warn(JSON.stringify(error.location, null, ' '))
     throw error
   }
 }
@@ -87,4 +85,4 @@ function compileAndOutput (translationDataList, outputDirectoryPath) {
 // start the process
 compileAndOutput(repackTranslation(LOCALE_LIST, TRANSLATION_LIST_MAP), OUTPUT_DIRECTORY_PATH)
   .then((result) => { console.log('Exported:\n', result) })
-  .catch((error) => { console.log('Error:\n', error) })
+  .catch((error) => { console.warn('Error:\n', error) })

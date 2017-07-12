@@ -11,8 +11,6 @@ const TRANSLATION_DATA = {
 
 const TRANSLATE = (key, variables) => TRANSLATION_DATA.translation(key, variables) || `${TRANSLATION_DATA.translation(TRANSLATION_DATA.missingDefaultKey)} = ${key}`
 
-const TRY_TRANSLATE = (key, variables) => TRANSLATION_DATA.translation(key, variables) || null
-
 const GET_LOCALE = () => TRANSLATION_DATA.locale
 const SET_LOCALE = (locale = DEFAULT_LOCALE) => {
   if (TRANSLATION_DATA.locale === locale) return
@@ -28,7 +26,6 @@ const SET_LOCALE = (locale = DEFAULT_LOCALE) => {
 export {
   LOCALE_LIST,
   TRANSLATE,
-  TRY_TRANSLATE,
   GET_LOCALE,
   SET_LOCALE
 }

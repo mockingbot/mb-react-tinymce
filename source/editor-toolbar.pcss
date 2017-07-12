@@ -1,5 +1,6 @@
 :root {
-  --color-btn-hover: #f7f7f7;
+  --color-btn-hover: rgba(0,0,0,.04);
+  --color-btn-active: rgba(0,0,0,.06);
 }
 
 .tinymce-editor-toolbar {
@@ -11,6 +12,7 @@
   &.isnt-activated {
     cursor: not-allowed;
     opacity: .5;
+    & button { pointer-events: none; }
   }
 
   & button {
@@ -24,16 +26,18 @@
     margin-right: 4px;
     font-size: 16px;
     width: 1.75em;
-    height: 1.75em;
+    height: 22px;
     color: inherit;
   }
 
   &.is-activated {
     & > button:hover,
-    & > button.is-active,
     & > .editor-select:hover,
     & > .editor-select.is-open {
       background-color: var(--color-btn-hover);
+    }
+    & > button.is-active {
+      background-color: var(--color-btn-active);
     }
   }
 

@@ -1,0 +1,22 @@
+:root {
+  --arrow-size: 8px;
+  --arrow-width: 8px;
+  --arrow-height: 4px;
+}
+
+:local(.css-icon) {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.none { visibility: hidden; }
+
+  &.arrow {
+    width: var(--arrow-size);
+    height: var(--arrow-size);
+    &::after { content: ''; border: calc(var(--arrow-width) * 0.5) solid transparent; }
+    &.up::after { border-top: 0; border-bottom: var(--arrow-height) solid currentColor; }
+    &.down::after { border-bottom: 0; border-top: var(--arrow-height) solid currentColor; }
+  }
+}

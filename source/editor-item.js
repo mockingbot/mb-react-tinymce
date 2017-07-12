@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import './editor-item.pcss'
-import { MockingBotIcon } from './__utils__'
+import { CSSIcon } from './__utils__'
 
 const getOptionDisplay = opt => opt.item || opt.val || opt
 
@@ -74,7 +74,7 @@ class Select extends PureComponent {
       >
         <button onClick={this.onToggle} className="tooltip-top" data-tooltip-content={dataTooltipContent}>
           {getOptionDisplay(currentOption)}
-          <MockingBotIcon name="arrow-down" className="caret" />
+          <CSSIcon name="arrow-down" className="caret" />
         </button>
 
         <ul {...hiddenProp}>

@@ -284,7 +284,6 @@ class EditorToolbar extends PureComponent {
   }
 
   render () {
-    // console.log('[RENDER] EditorToolbar ###################################')
     const { isLock, className } = this.props
     const { isEditorActivated, editor } = this.state
 

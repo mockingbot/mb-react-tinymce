@@ -15,14 +15,11 @@ const ICON_NAME_MAP = {
   'insertTable': 'icon-t-table',
   'insertLink': 'icon-mobile-copy-link',
   'insertImage': 'icon-img',
-  'arrow-down': 'icon-tri-arrow-down',
 
   'DEFAULT': 'icon-question'
 }
 
-const MockingBotIcon = ({ name, className }) => <i
-  className={`${ICON_NAME_MAP[ name ] || ICON_NAME_MAP.DEFAULT} ${className || ''}`}
-/>
+const MockingBotIcon = ({ name, className }) => <i className={`${ICON_NAME_MAP[ name ] || ICON_NAME_MAP.DEFAULT} ${className || ''}`} />
 
 MockingBotIcon.propTypes = {
   name: PropTypes.string.isRequired,

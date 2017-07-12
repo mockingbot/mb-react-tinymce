@@ -6,8 +6,6 @@ const { DefinePlugin, BannerPlugin, optimize: { UglifyJsPlugin, ModuleConcatenat
 const { NODE_ENV = 'production' } = process.env
 const IS_PRODUCTION = NODE_ENV === 'production'
 
-// console.log({ NODE_ENV, IS_PRODUCTION })
-
 const OPTIONS = {
   BABEL_LOADER: IS_PRODUCTION
     ? { presets: [ [ 'es2015', { modules: false } ], 'stage-0', 'react' ] }

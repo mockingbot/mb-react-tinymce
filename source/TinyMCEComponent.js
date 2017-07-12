@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import { getRandomId } from './__utils__'
 import { DEFAULT_EDITOR_STATE, reducerCreateEditor, reducerRemoveEditor } from './TinyMCE'
 import './tiny-mce-component.pcss'
 
@@ -54,6 +53,8 @@ class TinyMCEComponent extends PureComponent {
     />
   }
 }
+
+const getRandomId = () => `${Date.now().toString(36)}-${Math.random().toString(36).substr(2, 10)}`
 
 export {
   TinyMCEComponent
