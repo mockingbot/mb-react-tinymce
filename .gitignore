@@ -42,8 +42,13 @@ jspm_packages
 # generated
 /source/__utils__/translation
 /library
-/example/index.js
-/example/index.css
-/example/testData
 /stats.json
 /mb-react-tinymce-*
+
+# gh-pages unrelated
+/.*
+/__*
+/config
+/source
+/package*
+/README.md

@@ -1,0 +1,474 @@
+.css-icon_css-icon_d3o8E {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center
+}
+.css-icon_css-icon_d3o8E.none {
+  visibility: hidden;
+}
+.css-icon_css-icon_d3o8E.arrow {
+  width: 8px;
+  height: 8px
+}
+.css-icon_css-icon_d3o8E.arrow::after {
+  content: '';
+  border: 4px solid transparent;
+}
+.css-icon_css-icon_d3o8E.arrow.up::after {
+  border-top: 0;
+  border-bottom: 4px solid currentColor;
+}
+.css-icon_css-icon_d3o8E.arrow.down::after {
+  border-bottom: 0;
+  border-top: 4px solid currentColor;
+}
+.tiny-mce-content {
+  padding: 1px;
+  font-size: 12px;
+  color: #525e71
+}
+.tiny-mce-content ol,
+  .tiny-mce-content ul {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+.tiny-mce-content table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #999
+}
+.tiny-mce-content table tr:nth-child(even) {
+  background-color: #eee;
+}
+.tiny-mce-content table td {
+  width: 10%;
+}
+.tiny-mce-content table td,
+    .tiny-mce-content table th,
+    .tiny-mce-content table caption {
+  border: 1px dashed #BBB;
+}
+.tinymce-editor-toolbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.tinymce-editor-toolbar.isnt-activated {
+    cursor: not-allowed;
+    opacity: .5;
+}
+.tinymce-editor-toolbar.isnt-activated button {
+    pointer-events: none;
+}
+.tinymce-editor-toolbar button {
+    padding: 0;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    outline: 0;
+    margin-right: 4px;
+    font-size: 16px;
+    width: 1.75em;
+    height: 22px;
+    color: inherit;
+}
+.tinymce-editor-toolbar.is-activated > button:hover,
+    .tinymce-editor-toolbar.is-activated > .editor-select:hover,
+    .tinymce-editor-toolbar.is-activated > .editor-select.is-open {
+    background-color: rgba(0, 0, 0, .04);
+}
+.tinymce-editor-toolbar.is-activated > button.is-active {
+    background-color: rgba(0, 0, 0, .06);
+}
+.tinymce-editor-toolbar .foreColor {
+    margin-top: -1px;
+}
+.tinymce-editor-toolbar {
+    .editor-select {
+    padding: 0 2px;
+    }
+}
+.tinymce-editor-toolbar .font-size-indicator {
+    font-size: 12px;
+}
+.tinymce-editor-toolbar .font-size-picker ul:not([hidden]) {
+    display: block;
+    padding: 0;
+    width: 5.5em;
+    font-size: 12px;
+}
+.tinymce-editor-toolbar .font-size-picker ul li {
+    padding: 0;
+    line-height: 2.5;
+}
+.tinymce-editor-toolbar .font-size-picker ul li button {
+    width: 100%;
+    height: 100%;
+}
+.tinymce-editor-toolbar .fore-color-indicator {
+    margin: -3px auto 3px;
+    width: .7em;
+    height: 1px;
+}
+.tinymce-editor-toolbar .color-picker ul:not([hidden]) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    width: 9.75em;
+    padding: .5em;
+}
+.tinymce-editor-toolbar .color-picker ul li {
+    padding: 0 .125em;
+}
+.tinymce-editor-toolbar .color-picker ul li:hover {
+    background: none;
+}
+.tinymce-editor-toolbar .color-picker ul .color-item {
+    width: .875em;
+    height: .875em;
+    border: 1px solid rgba(0, 0, 0, .05);
+}
+.tinymce-editor-toolbar .alignment ul:not([hidden]) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: .5em;
+    width: 7em;
+    font-size: 16px;
+}
+.tinymce-editor-toolbar.isnt-activated .editor-select ul {
+    display: none !important;
+}
+.tinymce-editor-toolbar .editor-select ul button {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    font-size: inherit;
+}
+.tinymce-editor-toolbar .TINY_MCE_FIXED_TOOLBAR {
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.editor-select {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 2px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.editor-select > button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-left: .5em;
+    width: auto;
+}
+.editor-select ul {
+    position: absolute;
+    z-index: 65535;
+    top: 100%;
+    margin: 0;
+    padding: .5em;
+    list-style: none;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .10);
+            box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .10);
+    border: 1px solid rgba(0, 0, 0, .10);
+}
+.editor-select ul[hidden] {
+    display: none;
+}
+.editor-select ul:not([hidden]) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+.editor-select ul li {
+    padding: 0 .25em;
+}
+.editor-select ul li:hover {
+    background-color: #f7f7f7;
+}
+.editor-select .caret {
+    margin-left: 6px;
+    padding: 0 2px;
+    color: #d4d4d4;
+}
+
+.index-example_example-root_DqnGq {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin: 0 auto;
+  width: 720px;
+  max-height: 100%;
+  overflow: auto;
+  -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+          box-shadow: inset 0 0 0 1px #d9d9d9
+}
+
+.index-example_example-root_DqnGq > .button-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 12px 0;
+  width: 100%;
+}
+
+.index-example_example-root_DqnGq > .example-edit-toolbar {
+  overflow: visible;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 12px 0;
+  height: 32px;
+  -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+          box-shadow: inset 0 0 0 1px #d9d9d9;
+}
+
+.index-example_example-root_DqnGq > .example-tiny-mce-content {
+  overflow: auto;
+  margin: 12px 0;
+  -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+          box-shadow: inset 0 0 0 1px #d9d9d9
+}
+
+.index-example_example-root_DqnGq > .example-tiny-mce-content.display > div {
+  pointer-events: none;
+  cursor: default;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.index-example_example-root_DqnGq > .example-tiny-mce-content.edit > div {
+  pointer-events: auto;
+  cursor: auto;
+  -webkit-user-select: text;
+     -moz-user-select: text;
+      -ms-user-select: text;
+          user-select: text;
+  -webkit-touch-callout: default;
+  /* iOS Safari */
+  min-height: calc(100% + 1px);
+}
+
+.index-example_example-root_DqnGq > .example-tiny-mce-content {
+  /* Fix for TinyMCE getScrollContainer look-up code */
+  /* https://github.com/tinymce/tinymce/blob/86958160cb14309f5d36c53e5fa7b4b011b6e4a8/src/core/src/main/js/dom/Selection.js#L911 */
+}
+
+.index-example_example-root_DqnGq > .example-model-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .4);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease-out;
+  transition: opacity 0.4s ease-out
+}
+
+.index-example_example-root_DqnGq > .example-model-container > .modal-fullscreen-content {
+  background: #fff;
+  -webkit-box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .1);
+          box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .1);
+  -webkit-transform: translate3d(0, -360px, 0);
+          transform: translate3d(0, -360px, 0);
+  -webkit-transition: -webkit-transform 0.4s ease-out;
+  transition: -webkit-transform 0.4s ease-out;
+  transition: transform 0.4s ease-out;
+  transition: transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
+}
+
+.index-example_example-root_DqnGq > .example-model-container.show-fullscreen {
+  pointer-events: auto;
+  opacity: 1
+}
+
+.index-example_example-root_DqnGq > .example-model-container.show-fullscreen > .modal-fullscreen-content {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.index-example_example-root_DqnGq .example-button {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: visible;
+  padding: 0 4px;
+  min-width: 40px;
+  height: 40px;
+  color: #222;
+  background: #ccc
+}
+
+.index-example_example-root_DqnGq .example-button:hover {
+  background: #eee;
+}
+
+.index-example_example-root_DqnGq .example-button.select {
+  background: #eee;
+  -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
+          box-shadow: inset 0 0 0 1px #d9d9d9;
+  border-bottom: 2px solid #f55d54;
+}
+
+.index-example_example-root_DqnGq .example-button + .example-button {
+  margin-left: 12px;
+}
+
+.tooltip-top,
+.tooltip-bottom,
+.tooltip-left {
+  position: relative
+}
+
+.tooltip-top:hover::before, .tooltip-top:hover::after, .tooltip-bottom:hover::before, .tooltip-bottom:hover::after, .tooltip-left:hover::before, .tooltip-left:hover::after {
+  display: block;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip-top:hover::before, .tooltip-bottom:hover::before, .tooltip-left:hover::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+}
+
+.tooltip-top:hover::after, .tooltip-bottom:hover::after, .tooltip-left:hover::after {
+  content: attr(data-tooltip-content);
+  padding: 4px 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background: #000;
+}
+
+.tooltip-top:hover::before {
+  left: 50%;
+  bottom: calc(100% + 2px);
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  border-top-color: #000;
+  border-bottom-width: 0;
+}
+
+.tooltip-top:hover::after {
+  left: 50%;
+  bottom: calc(100% + 7px);
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+.tooltip-bottom:hover::before {
+  left: 50%;
+  top: calc(100% + 2px);
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  border-bottom-color: #000;
+  border-top-width: 0;
+}
+
+.tooltip-bottom:hover::after {
+  left: 50%;
+  top: calc(100% + 7px);
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+.tooltip-left:hover::before {
+  top: 50%;
+  right: calc(100% + 2px);
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  border-left-color: #000;
+  border-right-width: 0;
+}
+
+.tooltip-left:hover::after {
+  top: 50%;
+  right: calc(100% + 7px);
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+
+.tooltip-lock .tooltip-top:hover::before, .tooltip-lock .tooltip-top:hover::after, .tooltip-lock .tooltip-bottom:hover::before, .tooltip-lock .tooltip-bottom:hover::after, .tooltip-lock .tooltip-left:hover::before, .tooltip-lock .tooltip-left:hover::after {
+  display: none;
+}
