@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import { TinyMCEComponent, EditorToolbar, LOCALE_LIST, GET_LOCALE, SET_LOCALE } from './index'
+import { createStateStore } from './__utils__'
+import { TinyMCEComponent, createEditorStore, Toolbar, LOCALE_LIST, GET_LOCALE, SET_LOCALE } from './index'
 
 import LocalClassName from './index.example.pcss'
 const CSS_EXAMPLE_ROOT = LocalClassName[ 'example-root' ]
@@ -48,21 +49,19 @@ const CONTENT_STYLE_SIZE_LIST = [
   { width: '600px', height: '400px' }
 ]
 
-function initExample ({ rootElement, locale }) {
-  // simple Redux-like store
-  let state = {
+function initExample ({ rootElement, locale = 'en_US' }) {
+  const editorStore = createEditorStore()
+
+  const { getState, setState, subscribe } = createStateStore({
     locale,
     isLock: false,
     value: `<h2>MB React TinyMCE</h2><p>Double click here or click above button 'TinyMCEComponent' to enter edit mode</p>`,
     isActive: false,
     contentStyle: CONTENT_STYLE_SIZE_LIST[ CONTENT_STYLE_SIZE_LIST.length - 1 ],
     modal: null
-  }
-  const getState = () => state
-  const setState = (nextState) => {
-    state = { ...state, ...nextState }
-    renderExample(state)
-  }
+  })
+
+  subscribe((state) => renderExample(state))
 
   // pre-connected methods
   const showAlertModal = ({ title, message }) => setState({ modal: { title, message } })
@@ -83,27 +82,14 @@ function initExample ({ rootElement, locale }) {
     SET_LOCALE(locale)
     setState({ locale: GET_LOCALE() })
   }
-  const onEditEnd = (value) => {
-    const valueBrief = value.length > 100 ? `${value.slice(0, 80)}...(+${value.length - 80} char)` : value
-    setState({ value, modal: { title: 'Edit Result', message: valueBrief } })
-  }
+  const onValueChange = (value) => setState({ value, modal: { title: 'Edit Result', message: value.length > 100 ? `${value.slice(0, 80)}...(+${value.length - 80} char)` : value } })
 
   // render
   function renderExample ({ locale, isLock, value, isActive, contentStyle, modal }) {
     ReactDOM.render(<div className={CSS_EXAMPLE_ROOT}>
       <div className="button-row">
-        {LOCALE_LIST.map((v) => <ExampleButton
-          key={v}
-          name={v}
-          select={locale === v}
-          onClick={() => changeLocale(v)}
-        />)}
-        {CONTENT_STYLE_SIZE_LIST.map((v, i) => <ExampleButton
-          key={i}
-          name={`Size ${i}`}
-          select={contentStyle === v}
-          onClick={() => setState({ contentStyle: v })}
-        />)}
+        {LOCALE_LIST.map((v) => <ExampleButton key={v} name={v} select={locale === v} onClick={() => changeLocale(v)} />)}
+        {CONTENT_STYLE_SIZE_LIST.map((v, i) => <ExampleButton key={i} name={`Size ${i}`} select={contentStyle === v} onClick={() => setState({ contentStyle: v })} />)}
       </div>
 
       <div className="button-row">
@@ -120,12 +106,7 @@ function initExample ({ rootElement, locale }) {
       </div>
 
       <div className="example-edit-toolbar">
-        <EditorToolbar
-          isLock={isLock}
-          showAlertModal={showAlertModal}
-          showPendingModal={showPendingModal}
-          uploadSingleAsset={uploadSingleAsset}
-        />
+        <Toolbar {...{ editorStore, isLock, showAlertModal, showPendingModal, uploadSingleAsset }} />
       </div>
 
       <div
@@ -133,12 +114,7 @@ function initExample ({ rootElement, locale }) {
         style={contentStyle}
         onDoubleClick={() => setState({ isActive: !isActive })}
       >
-        <TinyMCEComponent
-          locale={locale}
-          value={value}
-          isActive={isActive}
-          onEditEnd={onEditEnd}
-        />
+        <TinyMCEComponent {...{ editorStore, value, isActive, locale, onChange: onValueChange }} />
       </div>
 
       <div className={`example-model-container ${modal ? 'show-fullscreen' : ''}`}>
@@ -153,11 +129,7 @@ function initExample ({ rootElement, locale }) {
   changeLocale(locale)
 
   // return for Debug
-  return {
-    getState,
-    setState,
-    renderExample
-  }
+  return { getState, setState, renderExample, editorStore }
 }
 
 export {

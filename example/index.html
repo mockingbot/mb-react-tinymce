@@ -19,13 +19,13 @@
 
         html, body, div, p, button, textarea { margin: 0; padding: 0; font-family: "Helvetica Neue", "Hiragino Sans GB", "Microsoft Yahei", Helvetica, Arial, sans-serif; }
 
-        .safari-flex-button, button, textarea { border: 0; background: transparent; outline-color: #f55d54; }
+        button, textarea, .safari-flex-button { border: 0; background: transparent; outline-color: #f55d54; }
 
-        .safari-flex-button, button { cursor: pointer; font-size: inherit; color: inherit; }
-
-        .safari-flex-button { display: flex; align-items: center; justify-content: center; }
+        button { cursor: pointer; font-size: inherit; color: inherit; }
 
         textarea { outline: none; resize: none; }
+
+        .safari-flex-button { cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
         /* webkit-scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -44,14 +44,14 @@
 </body>
 
 <script>
-  const { getState, setState, renderExample } = MB_REACT_TINYMCE.initExample({
+  const { getState, setState, renderExample, editorStore } = MB_REACT_TINYMCE.initExample({
     rootElement: document.querySelector('#root'),
     locale: `${window.navigator.language}` // 'zh_CN' | 'en_US'
   })
 
   renderExample(getState())
 
-  window.DEBUG = { getState, setState, renderExample }
+  window.DEBUG = { getState, setState, renderExample, editorStore }
 </script>
 
 </html>
