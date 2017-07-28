@@ -9,6 +9,7 @@
   },
   "main": "library/index.js",
   "scripts": {
+    "example": "cross-env NODE_ENV=production webpack --watch --config config/example.conf.js",
     "example-watch": "cross-env NODE_ENV=development webpack --watch --config config/example.conf.js",
     "library": "cross-env NODE_ENV=production webpack --config config/library.conf.js",
     "library-watch": "cross-env NODE_ENV=production webpack --watch --config config/library.conf.js",

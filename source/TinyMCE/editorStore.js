@@ -13,7 +13,7 @@ const DEFAULT_EDITOR_CONFIG = {
   toolbar: 'insert',
   insert_button_items: 'inserttable link image',
   default_link_target: '_blank',
-  table_default_styles: { tableLayout: 'fixed', width: '100%', border: '1px solid #999', borderSpacing: '0', borderCollapse: 'separate' }
+  table_default_styles: { tableLayout: 'fixed', width: '400px', border: '1px solid #999', borderSpacing: '0', borderCollapse: 'separate' }
 }
 
 const createEditor = (editorStore, editorElementRef, locale, value) => {
@@ -26,6 +26,7 @@ const createEditor = (editorStore, editorElementRef, locale, value) => {
       editorRef.on('init', () => {
         editorRef.setContent(value) // need to set content here because the domElement may have old content
         editorRef.selection.select(editorRef.getBody(), true)
+        editorRef.focus()
         editorStore.setState({ editorRef, editorStatus: doGetEditorStatus() })
       })
       editorRef.on('nodeChange', () => editorStore.setState({ editorStatus: doGetEditorStatus() }))
