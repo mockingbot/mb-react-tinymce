@@ -26,8 +26,9 @@ this package exports:
 
 ```js
 export {
+  createEditorStore,
   TinyMCEComponent,
-  EditorToolbar,
+  Toolbar,
   LOCALE_LIST,
   GET_LOCALE,
   SET_LOCALE

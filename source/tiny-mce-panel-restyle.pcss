@@ -7,7 +7,12 @@
   --color-selection: color(var(--color-primary) a(0.4));
   --color-text-80: #525e71;
   --color-inactive: #bbb;
+  --dialog-item-height: 30px;
+  --dialog-item-text-height: 20px;
+  --insert-table-item-count: 9;
 }
+
+/* TODO: remove this when we have a sane project manager, instead of a fake */
 
 .mce-panel.mce-floatpanel {
   & *::selection { background: var(--color-selection); }
@@ -33,18 +38,23 @@
       margin: 2px;
       width: 10px;
       height: 10px;
-      border: 1px solid var(--color-primary);
+      font-size: 10px;
       line-height: 12px;
-      font-size: 11px;
+      border: 1px solid var(--color-primary);
       color: var(--color-primary);
       background: transparent;
     }
   }
 
+  & .mce-textbox,
   & .mce-listbox,
-  & .mce-textbox {
-    min-height: 24px !important;
-    max-height: 24px !important;
+  & .mce-listbox > button {
+    min-height: var(--dialog-item-text-height) !important;
+    max-height: var(--dialog-item-text-height) !important;
+    line-height: 14px;
+  }
+  & .mce-textbox,
+  & .mce-listbox {
     box-sizing: border-box;
     border: 0;
     border-bottom: 1px solid var(--color-border);
@@ -77,9 +87,9 @@ div[role="dialog"] { width: auto !important; height: auto !important; }
 div[role="dialog"] > div[role="application"] {
   & > .mce-window-head,
   & > .mce-window-body,
-  & > .mce-foot,
   & > .mce-window-body > .mce-form,
   & > .mce-window-body > .mce-form > div,
+  & > .mce-foot,
   & > .mce-foot > div { box-sizing: border-box; max-width: 220px; }
 
   & > .mce-window-head {
@@ -118,9 +128,9 @@ div[role="dialog"][aria-label="Insert link"] > div[role="application"] > .mce-wi
     & > div {
       & > label.mce-label { width: 48px !important; }
 
+      & > .mce-listbox,
       & > .mce-combobox,
       & > .mce-combobox > input.mce-textbox,
-      & > .mce-listbox,
       & > input.mce-textbox { left: initial !important; right: 0; width: 122px !important; }
     }
   }
@@ -129,16 +139,16 @@ div[role="dialog"][aria-label="Insert link"] > div[role="application"] > .mce-wi
 /* insert table */
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body {
   padding: 10px 0;
-  min-height: 320px;
+  min-height: calc(var(--dialog-item-height) * var(--insert-table-item-count) + 20px);
 
   & > .mce-container,
-  & > .mce-container > .mce-container-body { min-height: 300px; }
+  & > .mce-container > .mce-container-body { min-height: calc(var(--dialog-item-height) * var(--insert-table-item-count)); }
 
   & .mce-abs-layout,
   & .mce-abs-layout-item { position: relative; left: 0 !important; top: 0 !important; }
 
   & div.mce-abs-layout,
-  & div.mce-abs-layout-item { box-sizing: border-box; max-width: 220px; height: auto !important; min-height: 30px; }
+  & div.mce-abs-layout-item { box-sizing: border-box; max-width: 220px; height: auto !important; min-height: var(--dialog-item-height); }
 
   & > .mce-container.mce-panel {
     /* insert table - tab */
@@ -163,9 +173,14 @@ div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .m
           align-items: center;
           padding: 0 20px;
         }
-        & label { max-width: 80px; min-width: 48px; margin-right: 12px; }
-        & input { min-width: 50px; max-width: 122px; max-height: 24px; }
+
+        & label { max-width: 72px; min-width: 72px; margin-right: 20px; }
+        & input { min-width: 88px; max-width: 88px; max-height: 18px; }
+        & .mce-combobox.mce-colorbox > input { min-width: 64px; max-width: 64px; }
       }
+
+      /* HACK: to hide direct table CSS style edit */
+      & > .mce-form:nth-child(3) > div > .mce-formitem:nth-child(2) { display: none; }
     }
   }
 }
@@ -235,31 +250,30 @@ div[role="dialog"][aria-label="Color"] > div[role="application"] > .mce-window-b
   }
 }
 
+/* select */
 div[role="application"].mce-menu.mce-panel {
-  padding: 0;
-  min-width: 0;
   border: 0;
+  padding: 0;
+  min-width: 122px;
+  width: auto !important;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
 
-  & > div[role="menu"].mce-container-body {
-    & > div[role="menuitem"].mce-menu-item {
+  & > div[role="menu"] {
+    width: auto !important;
+    & > div[role="menuitem"] {
       display: flex;
       flex-flow: row;
       align-items: center;
       margin: 0;
       padding: 0 6px;
-      height: 30px;
+      height: var(--dialog-item-height);
       border: 0;
       &:hover { background: var(--color-hover); }
       &.mce-active { background: var(--color-select); }
 
       & .mce-text { color: var(--color-text-80); }
     }
-    & > div[role="separator"].mce-menu-item-sep {
-      margin: 0;
-      height: 0;
-      border-bottom: 1px solid var(--color-border);
-    }
+    & > div[role="separator"].mce-menu-item-sep { margin: 0; height: 0; border-bottom: 1px solid var(--color-border); }
   }
 }
 

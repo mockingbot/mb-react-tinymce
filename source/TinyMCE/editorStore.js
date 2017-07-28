@@ -4,7 +4,7 @@ import { objectMerge, createStateStore } from 'source/__utils__'
 const TINY_MCE = window.tinyMCE || window.tinymce // NOTE: load tinymce from window
 
 const DEFAULT_EDITOR_CONFIG = {
-  plugins: 'paste link image lists table colorpicker',
+  plugins: 'colorpicker image link lists paste table',
   fixed_toolbar_container: '.TINY_MCE_FIXED_TOOLBAR',
   custom_ui_selector: '.TINY_MCE_CUSTOM_UI',
   custom_undo_redo_levels: 30,

@@ -4,10 +4,14 @@
 
 [Source](https://www.tinymce.com/download/custom-builds/)
 
-- Plugins: `paste link image lists table textcolor colorpicker`
+- Plugins: `colorpicker image link lists paste table`
 - Skins: `lightgrey`
 - Themes: `modern inlite`
 - Options: `combine all js files`
+
+```
+https://tinymce-services.azurewebsites.net/1/package/download?plugins=colorpicker,image,link,lists,paste,table&themes=modern,inlite&skins=lightgray&combine=true
+```
 
 #### Language pack 
 

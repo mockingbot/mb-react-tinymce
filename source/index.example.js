@@ -6,6 +6,7 @@ import { TinyMCEComponent, createEditorStore, Toolbar, LOCALE_LIST, GET_LOCALE, 
 
 import LocalClassName from './index.example.pcss'
 const CSS_EXAMPLE_ROOT = LocalClassName[ 'example-root' ]
+const CSS_EXAMPLE_MODAL = LocalClassName[ 'example-modal' ]
 
 const ExampleButton = ({ name = '', className = '', onClick = null, select = false }) => <div
   className={`example-button safari-flex-button ${select ? 'select' : ''} ${className}`}
@@ -34,9 +35,9 @@ class ExampleModal extends PureComponent {
 
   render () {
     const { title, message, doClose } = this.props
-    return <div>
-      <h2>{title || ''}</h2>
-      <p>{message || ''}</p>
+    return <div className={CSS_EXAMPLE_MODAL}>
+      <p className="title">{title || ''}</p>
+      {message && <pre className="content">{message || ''}</pre>}
       <ExampleButton name="Close" onClick={doClose} />
     </div>
   }
@@ -82,7 +83,7 @@ function initExample ({ rootElement, locale = 'en_US' }) {
     SET_LOCALE(locale)
     setState({ locale: GET_LOCALE() })
   }
-  const onValueChange = (value) => setState({ value, modal: { title: 'Edit Result', message: value.length > 100 ? `${value.slice(0, 80)}...(+${value.length - 80} char)` : value } })
+  const onValueChange = (value) => setState({ value, modal: { title: 'Changed Edit Result', message: value.length > 1024 ? `${value.slice(0, 512)}...(+${value.length - 512} char)` : value } })
 
   // render
   function renderExample ({ locale, isLock, value, isActive, contentStyle, modal }) {
