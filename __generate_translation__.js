@@ -9,7 +9,7 @@ const OUTPUT_DIRECTORY_PATH = NodeModulePath.resolve(__dirname, './source/__util
 
 const LOCALE_LIST = [ 'zh_CN', 'en_US' ]
 const TRANSLATION_LIST_MAP = {
-  'TinyMCE:fontSize': [ '字号', 'Font Size' ],
+  'TinyMCE:fontSize': [ '字号', 'Text' ],
   'TinyMCE:bold': [ '粗体', 'Bold' ],
   'TinyMCE:italic': [ '斜体', 'Italic' ],
   'TinyMCE:underline': [ '下划线', 'Underline' ],

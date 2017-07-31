@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 import { TRANSLATE, MockingBotIcon } from 'source/__utils__'
-import { Select } from './Select'
+import { Select, SelectV2 } from './Select'
 
 import LocalClassName from './index.pcss'
 const CSS_TOOLBAR = LocalClassName[ 'toolbar' ]
@@ -51,11 +51,11 @@ class Toolbar extends PureComponent {
     })
 
     this.selectMap = {
-      'fontSize': createToolbarSelect({
+      'fontSize': createToolbarSelectV2({
         className: 'select-font-size',
         renderItem: (fontSize) => fontSize,
         renderSelectItem: (fontSize = FONT_SIZE_ITEM_LIST[ 0 ]) => <div>{fontSize}</div>,
-        onChange: (fontSize) => this.execEditorCommand('fontSize', fontSize),
+        onChange: (fontSize) => this.execEditorCommand('fontSize', `${fontSize}px`),
         tooltip: 'TinyMCE:fontSize'
       }),
       'foreColor': createToolbarSelect({
@@ -149,7 +149,18 @@ const createToolbarSelect = ({ renderItem, renderSelectItem, onChange, className
   tooltip={TRANSLATE(tooltip)}
 />
 
-const FONT_SIZE_ITEM_LIST = [ 12, 13, 14, 16, 18, 20, 28, 36, 48, 72 ].map((v) => `${v}px`)
+const createToolbarSelectV2 = ({ renderItem, renderSelectItem, onChange, className, tooltip }) => (itemList, selectItemIndex, isLock) => <SelectV2
+  className={className}
+  itemList={itemList}
+  selectItemIndex={selectItemIndex}
+  renderItem={renderItem}
+  renderSelectItem={renderSelectItem || renderItem}
+  onChange={onChange}
+  isLock={isLock}
+  tooltip={TRANSLATE(tooltip)}
+/>
+
+const FONT_SIZE_ITEM_LIST = [ 12, 13, 14, 16, 18, 20, 28, 36, 48, 72 ].map((v) => `${v}`) // .map((v) => `${v}px`)
 const FORE_COLOR_ITEM_LIST = [
   '#000000', '#9b9b9b', '#4a4a4a', '#417505', '#b8e986', '#7ed321', '#ff001f',
   '#8b572a', '#f6a623', '#f8e71c', '#bd0fe1', '#9013fe', '#4990e2', '#50e3c2'

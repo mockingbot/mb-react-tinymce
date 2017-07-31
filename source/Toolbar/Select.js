@@ -5,6 +5,7 @@ import { CSSIcon } from 'source/__utils__'
 
 import LocalClassName from './select.pcss'
 const CSS_SELECT = LocalClassName[ 'select' ]
+const CSS_SELECT_V2 = LocalClassName[ 'select-v2' ]
 
 class Select extends PureComponent {
   static propTypes = {
@@ -65,6 +66,29 @@ class Select extends PureComponent {
   }
 }
 
+// don't ask me why...
+class SelectV2 extends Select {
+  render () {
+    const { itemList, selectItemIndex, renderItem, renderSelectItem, isLock, className, tooltip } = this.props
+    const { isOpen } = this.state
+
+    return <div className={CSS_SELECT_V2}>
+      <div className={`item-label ${isLock ? 'lock' : ''}`}>{tooltip}</div>
+      <div ref={this.setElementRef} className={`${CSS_SELECT} ${className || ''}`}>
+        <div
+          className={`safari-flex-button item-select ${isOpen ? 'open' : ''} ${isLock ? 'lock' : ''}`}
+          onClick={!isLock ? this.toggleIsOpen : null}
+        >
+          {(renderSelectItem || renderItem)(itemList[ selectItemIndex ])}
+          <CSSIcon name={isOpen ? 'arrow-up' : 'arrow-down'} className="icon" />
+        </div>
+        {!isLock && isOpen && <div className="item-list">{itemList.map(this.renderItem, this)}</div>}
+      </div>
+    </div>
+  }
+}
+
 export {
-  Select
+  Select,
+  SelectV2
 }

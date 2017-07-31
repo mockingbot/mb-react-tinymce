@@ -1,6 +1,6 @@
 {
   "name": "mb-react-tinymce",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "mockingbot",
   "license": "MIT",
   "repository": {
@@ -37,14 +37,14 @@
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^3.0.0",
-    "messageformat": "1.x",
+    "messageformat": "^1.0.2",
     "postcss": "^6.0.8",
     "postcss-cssnext": "^3.0.2",
     "postcss-loader": "^2.0.6",
     "prop-types": "^15.5.8",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "webpack": "^3.4.0"
+    "webpack": "^3.4.1"
   },
   "peerDependencies": {
     "prop-types": "*",
