@@ -9,7 +9,7 @@
   --color-inactive: #bbb;
   --dialog-item-height: 30px;
   --dialog-item-text-height: 20px;
-  --insert-table-item-count: 9;
+  --insert-table-item-count: 8;
 }
 
 /* TODO: remove this when we have a sane project manager, instead of a fake */
@@ -178,6 +178,9 @@ div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .m
         & input { min-width: 88px; max-width: 88px; max-height: 18px; }
         & .mce-combobox.mce-colorbox > input { min-width: 64px; max-width: 64px; }
       }
+
+      /* HACK: to hide table border attribute edit */
+      & > .mce-form:nth-child(2) > div > .mce-form > div > .mce-form > div > .mce-formitem:nth-child(6) { display: none; }
 
       /* HACK: to hide direct table CSS style edit */
       & > .mce-form:nth-child(3) > div > .mce-formitem:nth-child(2) { display: none; }
