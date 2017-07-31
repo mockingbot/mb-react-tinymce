@@ -3556,7 +3556,7 @@ object-assign
         var locale_en_US_defaultExport = function() {
             return {
                 "TinyMCE:fontSize": function(d) {
-                    return "Font Size";
+                    return "Text";
                 },
                 "TinyMCE:bold": function(d) {
                     return "Bold";
@@ -3712,7 +3712,7 @@ object-assign
                 status[name] = editorRef.queryCommandState(name);
                 return status;
             }, {
-                fontSize: editorRef.queryCommandValue("fontSize") || "",
+                fontSize: "" + (parseInt(editorRef.queryCommandValue("fontSize")) || ""),
                 foreColor: getHexFromRGBColor(editorRef.queryCommandValue("foreColor")) || ""
             });
         };
@@ -3926,6 +3926,7 @@ object-assign
             superClass && (Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass);
         }
         var CSS_SELECT = __WEBPACK_IMPORTED_MODULE_3__select_pcss___default.a.select;
+        var CSS_SELECT_V2 = __WEBPACK_IMPORTED_MODULE_3__select_pcss___default.a["select-v2"];
         var Select_Select = function(_PureComponent) {
             Select__inherits(Select, _PureComponent);
             function Select(props) {
@@ -4005,6 +4006,37 @@ object-assign
             className: Select___WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
             tooltip: Select___WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string
         };
+        var Select_SelectV2 = function(_Select) {
+            Select__inherits(SelectV2, _Select);
+            function SelectV2() {
+                Select__classCallCheck(this, SelectV2);
+                return Select__possibleConstructorReturn(this, (SelectV2.__proto__ || Object.getPrototypeOf(SelectV2)).apply(this, arguments));
+            }
+            Select__createClass(SelectV2, [ {
+                key: "render",
+                value: function() {
+                    var _props3 = this.props, itemList = _props3.itemList, selectItemIndex = _props3.selectItemIndex, renderItem = _props3.renderItem, renderSelectItem = _props3.renderSelectItem, isLock = _props3.isLock, className = _props3.className, tooltip = _props3.tooltip;
+                    var isOpen = this.state.isOpen;
+                    return Select___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+                        className: CSS_SELECT_V2
+                    }, Select___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+                        className: "item-label " + (isLock ? "lock" : "")
+                    }, tooltip), Select___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+                        ref: this.setElementRef,
+                        className: CSS_SELECT + " " + (className || "")
+                    }, Select___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+                        className: "safari-flex-button item-select " + (isOpen ? "open" : "") + " " + (isLock ? "lock" : ""),
+                        onClick: isLock ? null : this.toggleIsOpen
+                    }, (renderSelectItem || renderItem)(itemList[selectItemIndex]), Select___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(CSSIcon, {
+                        name: isOpen ? "arrow-up" : "arrow-down",
+                        className: "icon"
+                    })), !isLock && isOpen && Select___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+                        className: "item-list"
+                    }, itemList.map(this.renderItem, this))));
+                }
+            } ]);
+            return SelectV2;
+        }(Select_Select);
         var Toolbar___WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(12);
         var Toolbar___WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(Toolbar___WEBPACK_IMPORTED_MODULE_0_react__);
         var Toolbar___WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(18);
@@ -4091,7 +4123,7 @@ object-assign
                     insertImage: Toolbar_createToolbarStatusButton("insertImage", _this.showMenuInsertImage)
                 });
                 _this.selectMap = {
-                    fontSize: Toolbar_createToolbarSelect({
+                    fontSize: Toolbar_createToolbarSelectV2({
                         className: "select-font-size",
                         renderItem: function(fontSize) {
                             return fontSize;
@@ -4101,7 +4133,7 @@ object-assign
                             return Toolbar___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, fontSize);
                         },
                         onChange: function(fontSize) {
-                            return _this.execEditorCommand("fontSize", fontSize);
+                            return _this.execEditorCommand("fontSize", fontSize + "px");
                         },
                         tooltip: "TinyMCE:fontSize"
                     }),
@@ -4230,13 +4262,28 @@ object-assign
                 });
             };
         };
+        var Toolbar_createToolbarSelectV2 = function(_ref3) {
+            var renderItem = _ref3.renderItem, renderSelectItem = _ref3.renderSelectItem, onChange = _ref3.onChange, className = _ref3.className, tooltip = _ref3.tooltip;
+            return function(itemList, selectItemIndex, isLock) {
+                return Toolbar___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Select_SelectV2, {
+                    className: className,
+                    itemList: itemList,
+                    selectItemIndex: selectItemIndex,
+                    renderItem: renderItem,
+                    renderSelectItem: renderSelectItem || renderItem,
+                    onChange: onChange,
+                    isLock: isLock,
+                    tooltip: TRANSLATE(tooltip)
+                });
+            };
+        };
         var FONT_SIZE_ITEM_LIST = [ 12, 13, 14, 16, 18, 20, 28, 36, 48, 72 ].map(function(v) {
-            return v + "px";
+            return "" + v;
         });
         var FORE_COLOR_ITEM_LIST = [ "#000000", "#9b9b9b", "#4a4a4a", "#417505", "#b8e986", "#7ed321", "#ff001f", "#8b572a", "#f6a623", "#f8e71c", "#bd0fe1", "#9013fe", "#4990e2", "#50e3c2" ];
         var ALIGNMENT_ITEM_LIST = [ "justifyLeft", "justifyCenter", "justifyRight" ];
-        var getAlignmentItemIndex = function(_ref3) {
-            var justifyLeft = _ref3.justifyLeft, justifyCenter = _ref3.justifyCenter, justifyRight = _ref3.justifyRight;
+        var getAlignmentItemIndex = function(_ref4) {
+            var justifyLeft = _ref4.justifyLeft, justifyCenter = _ref4.justifyCenter, justifyRight = _ref4.justifyRight;
             return justifyLeft ? ALIGNMENT_ITEM_LIST.indexOf("justifyLeft") : justifyCenter ? ALIGNMENT_ITEM_LIST.indexOf("justifyCenter") : justifyRight ? ALIGNMENT_ITEM_LIST.indexOf("justifyRight") : 0;
         };
         var showMenuInsertTable = function(event) {
@@ -9304,7 +9351,8 @@ object-assign
         };
     }, function(module, exports) {
         module.exports = {
-            select: "Dky6Mdzotj3t"
+            select: "Dky6Mdzotj3t",
+            "select-v2": "_2E6XrFsno6MT"
         };
     }, function(module, exports) {
         module.exports = {

@@ -203,8 +203,11 @@ table[role="grid"].mce-grid td[role="gridcell"] > a:hover,
 .Dky6Mdzotj3t {
   position: relative;
   margin: 0 1px;
-  height: 22px
+  height: 22px;
+  font-size: 16px;
+  color: #525e71
 }
+
 .Dky6Mdzotj3t > .item-select {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -218,26 +221,31 @@ table[role="grid"].mce-grid td[role="gridcell"] > a:hover,
           align-items: center;
   padding: 0 5px;
   width: 100%;
-  height: 100%;
-  color: #525e71
+  height: 100%
 }
+
 .Dky6Mdzotj3t > .item-select:hover {
   background: rgba(0, 0, 0, .04);
 }
+
 .Dky6Mdzotj3t > .item-select.open {
   background: rgba(0, 0, 0, .06);
 }
+
 .Dky6Mdzotj3t > .item-select.lock {
   cursor: not-allowed;
   color: #bbb;
 }
+
 .Dky6Mdzotj3t > .item-select.lock, .Dky6Mdzotj3t > .item-select.lock:hover {
   background: transparent;
 }
+
 .Dky6Mdzotj3t > .item-select > .icon {
   margin-left: 5px;
   color: #bbb;
 }
+
 .Dky6Mdzotj3t > .item-list {
   position: absolute;
   top: 100%;
@@ -253,9 +261,9 @@ table[role="grid"].mce-grid td[role="gridcell"] > a:hover,
   -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .10), 0 2px 8px 0 rgba(0, 0, 0, .10);
           box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .10), 0 2px 8px 0 rgba(0, 0, 0, .10);
   background: #fff;
-  color: #525e71;
   z-index: 1
 }
+
 .Dky6Mdzotj3t > .item-list > .item {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -267,32 +275,44 @@ table[role="grid"].mce-grid td[role="gridcell"] > a:hover,
       -ms-flex-pack: center;
           justify-content: center
 }
+
 .Dky6Mdzotj3t > .item-list > .item:hover {
   background: rgba(0, 0, 0, .04);
 }
+
 .Dky6Mdzotj3t > .item-list > .item.select {
   background: rgba(0, 0, 0, .06);
 }
+
 .Dky6Mdzotj3t {
   /* custom style */
 }
+
 .Dky6Mdzotj3t.select-font-size {
   font-size: 12px
 }
+
+.Dky6Mdzotj3t.select-font-size > .item-select > div {
+  min-width: 24px;
+}
+
 .Dky6Mdzotj3t.select-font-size > .item-list {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column
 }
+
 .Dky6Mdzotj3t.select-font-size > .item-list > .item {
   width: 64px;
   height: 30px;
 }
+
 .Dky6Mdzotj3t.select-fore-color > .item-select > div {
   position: relative;
   height: 100%;
 }
+
 .Dky6Mdzotj3t.select-fore-color > .item-select > div > span {
   position: absolute;
   left: 2px;
@@ -300,9 +320,11 @@ table[role="grid"].mce-grid td[role="gridcell"] > a:hover,
   width: 13px;
   height: 1px;
 }
+
 .Dky6Mdzotj3t.select-fore-color > .item-select.lock > div > span {
   opacity: 0.4;
 }
+
 .Dky6Mdzotj3t.select-fore-color > .item-list {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -311,16 +333,19 @@ table[role="grid"].mce-grid td[role="gridcell"] > a:hover,
   padding: 10px;
   width: 160px
 }
+
 .Dky6Mdzotj3t.select-fore-color > .item-list > .item {
   width: 20px;
   height: 24px;
 }
+
 .Dky6Mdzotj3t.select-fore-color > .item-list > .item > span {
   width: 14px;
   height: 14px;
   -webkit-box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .10);
           box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .10);
 }
+
 .Dky6Mdzotj3t.select-alignment > .item-list {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -332,11 +357,54 @@ table[role="grid"].mce-grid td[role="gridcell"] > a:hover,
   padding: 10px;
   width: 112px
 }
+
 .Dky6Mdzotj3t.select-alignment > .item-list > .item {
   width: 24px;
   height: 24px;
 }
 
+._2E6XrFsno6MT {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 5px;
+  font-size: 12px;
+  color: #525e71
+}
+
+._2E6XrFsno6MT > .item-label {
+  pointer-events: none;
+  margin-right: 4px;
+  white-space: nowrap
+}
+
+._2E6XrFsno6MT > .item-label.lock {
+  color: #bbb;
+}
+
+._2E6XrFsno6MT > .Dky6Mdzotj3t {
+  border-bottom: 1px solid #d9d9d9
+}
+
+._2E6XrFsno6MT > .Dky6Mdzotj3t:hover {
+  border-bottom: 1px solid #525e71;
+}
+
+._2E6XrFsno6MT > .Dky6Mdzotj3t:focus {
+  border-bottom: 1px solid #eb5648;
+}
+
+._2E6XrFsno6MT > .Dky6Mdzotj3t > .item-select:hover,
+      ._2E6XrFsno6MT > .Dky6Mdzotj3t > .item-select.open {
+  background: transparent;
+}
 ._2XxXxbdzSpGg {
   display: -webkit-box;
   display: -ms-flexbox;
