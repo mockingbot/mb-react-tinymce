@@ -7,16 +7,24 @@ import { TinyMCEComponent, createEditorStore, Toolbar, LOCALE_LIST, GET_LOCALE, 
 import LocalClassName from './index.example.pcss'
 const CSS_EXAMPLE_ROOT = LocalClassName[ 'example-root' ]
 const CSS_EXAMPLE_MODAL = LocalClassName[ 'example-modal' ]
+const CSS_EXAMPLE_BUTTON = LocalClassName[ 'example-button' ]
+const CSS_EXAMPLE_STATUS = LocalClassName[ 'example-status' ]
 
 const ExampleButton = ({ name = '', className = '', onClick = null, select = false }) => <div
-  className={`example-button safari-flex-button ${select ? 'select' : ''} ${className}`}
-  onClick={onClick}
+  className={`safari-flex-button ${CSS_EXAMPLE_BUTTON} ${select ? 'select' : ''} ${className || ''}`}
+  onClick={onClick || null}
 >{name}</div>
 ExampleButton.propTypes = {
   name: PropTypes.string,
   className: PropTypes.string,
   select: PropTypes.bool,
   onClick: PropTypes.func
+}
+
+const ExampleStatus = ({ name = '', className = '' }) => <div className={`${CSS_EXAMPLE_STATUS} ${className || ''}`}>{name}</div>
+ExampleStatus.propTypes = {
+  name: PropTypes.string,
+  className: PropTypes.string
 }
 
 class ExampleModal extends PureComponent {
@@ -84,6 +92,8 @@ function initExample ({ rootElement, locale = 'en_US' }) {
     setState({ locale: GET_LOCALE() })
   }
   const onValueChange = (value) => setState({ value, modal: { title: 'Changed Edit Result', message: value.length > 1024 ? `${value.slice(0, 512)}...(+${value.length - 512} char)` : value } })
+  const doToggleIsLock = () => setState({ isLock: !getState().isLock })
+  const doToggleIsActive = () => setState({ isActive: !getState().isActive })
 
   // render
   function renderExample ({ locale, isLock, value, isActive, contentStyle, modal }) {
@@ -94,27 +104,17 @@ function initExample ({ rootElement, locale = 'en_US' }) {
       </div>
 
       <div className="button-row">
-        <ExampleButton
-          name={`EditorToolbar: ${isLock ? 'Locked' : 'Unlocked'}`}
-          onClick={() => setState({ isLock: !isLock })}
-          select={!isLock}
-        />
-        <ExampleButton
-          name={`TinyMCEComponent: ${isActive ? 'Edit' : 'Display'}`}
-          onClick={() => setState({ isActive: !isActive })}
-          select={isActive}
-        />
+        <ExampleStatus name={`TinyMCEComponent: ${isActive ? 'Edit' : 'Display'}`} />
+        <ExampleStatus name={`Toolbar: ${isLock ? 'Locked' : 'Unlocked'}`} />
+        <ExampleButton name={`${isActive ? 'End' : 'Start'} Editing`} onClick={doToggleIsActive} select={isActive} />
+        {isActive && <ExampleButton name={`${isLock ? 'Unlock' : 'Lock'} Toolbar`} onClick={doToggleIsLock} select={isLock} />}
       </div>
 
       <div className="example-edit-toolbar">
         <Toolbar {...{ editorStore, isLock, showAlertModal, showPendingModal, uploadSingleAsset }} />
       </div>
 
-      <div
-        className={`example-tiny-mce-content ${isActive ? 'edit' : 'display'}`}
-        style={contentStyle}
-        onDoubleClick={() => setState({ isActive: !isActive })}
-      >
+      <div className={`example-tiny-mce-content ${isActive ? 'edit' : 'display'}`} style={contentStyle} onDoubleClick={isActive ? null : doToggleIsActive}>
         <TinyMCEComponent {...{ editorStore, value, isActive, locale, onChange: onValueChange }} />
       </div>
 

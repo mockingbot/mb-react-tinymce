@@ -13,8 +13,8 @@ and serve the `example/` directory.
 Then open `example/index.html`.
 
 Check code to init example at:
-- `source/index/example.js`
-- `example/`
+- `source/index.example.js`
+- `example/index.html`
 
 this package requires: 
 

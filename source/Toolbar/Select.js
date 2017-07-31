@@ -74,7 +74,7 @@ class SelectV2 extends Select {
 
     return <div className={CSS_SELECT_V2}>
       <div className={`item-label ${isLock ? 'lock' : ''}`}>{tooltip}</div>
-      <div ref={this.setElementRef} className={`${CSS_SELECT} ${className || ''}`}>
+      <div ref={this.setElementRef} className={`${CSS_SELECT} ${isLock ? 'lock' : ''} ${className || ''}`}>
         <div
           className={`safari-flex-button item-select ${isOpen ? 'open' : ''} ${isLock ? 'lock' : ''}`}
           onClick={!isLock ? this.toggleIsOpen : null}
