@@ -109,10 +109,10 @@ div[role="dialog"][aria-label="Insert link"] > div[role="application"] > .mce-wi
 /* insert table */
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body {
   padding: 10px 0;
-  min-height: 290px
+  min-height: 260px
 }
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body > .mce-container,
-  div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body > .mce-container > .mce-container-body { min-height: 270px; }
+  div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body > .mce-container > .mce-container-body { min-height: 240px; }
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body .mce-abs-layout,
   div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body .mce-abs-layout-item { position: relative; left: 0 !important; top: 0 !important; }
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body div.mce-abs-layout,
@@ -128,6 +128,8 @@ div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .m
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body > .mce-container.mce-panel > .mce-container-body .mce-formitem label { max-width: 72px; min-width: 72px; margin-right: 20px; }
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body > .mce-container.mce-panel > .mce-container-body .mce-formitem input { min-width: 88px; max-width: 88px; max-height: 18px; }
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body > .mce-container.mce-panel > .mce-container-body .mce-formitem .mce-combobox.mce-colorbox > input { min-width: 64px; max-width: 64px; }
+div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body > .mce-container.mce-panel > .mce-container-body {/* HACK: to hide table border attribute edit */ }
+div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body > .mce-container.mce-panel > .mce-container-body > .mce-form:nth-child(2) > div > .mce-form > div > .mce-form > div > .mce-formitem:nth-child(6) { display: none; }
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body > .mce-container.mce-panel > .mce-container-body {/* HACK: to hide direct table CSS style edit */ }
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body > .mce-container.mce-panel > .mce-container-body > .mce-form:nth-child(3) > div > .mce-formitem:nth-child(2) { display: none; }
 
