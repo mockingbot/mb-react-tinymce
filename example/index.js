@@ -4023,7 +4023,7 @@ object-assign
                         className: "item-label " + (isLock ? "lock" : "")
                     }, tooltip), Select___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
                         ref: this.setElementRef,
-                        className: CSS_SELECT + " " + (className || "")
+                        className: CSS_SELECT + " " + (isLock ? "lock" : "") + " " + (className || "")
                     }, Select___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
                         className: "safari-flex-button item-select " + (isOpen ? "open" : "") + " " + (isLock ? "lock" : ""),
                         onClick: isLock ? null : this.toggleIsOpen
@@ -4387,11 +4387,13 @@ object-assign
         }
         var CSS_EXAMPLE_ROOT = __WEBPACK_IMPORTED_MODULE_5__index_example_pcss___default.a["example-root"];
         var CSS_EXAMPLE_MODAL = __WEBPACK_IMPORTED_MODULE_5__index_example_pcss___default.a["example-modal"];
+        var CSS_EXAMPLE_BUTTON = __WEBPACK_IMPORTED_MODULE_5__index_example_pcss___default.a["example-button"];
+        var CSS_EXAMPLE_STATUS = __WEBPACK_IMPORTED_MODULE_5__index_example_pcss___default.a["example-status"];
         var ExampleButton = function(_ref) {
             var _ref$name = _ref.name, name = void 0 === _ref$name ? "" : _ref$name, _ref$className = _ref.className, className = void 0 === _ref$className ? "" : _ref$className, _ref$onClick = _ref.onClick, onClick = void 0 === _ref$onClick ? null : _ref$onClick, _ref$select = _ref.select, select = void 0 !== _ref$select && _ref$select;
             return index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-                className: "example-button safari-flex-button " + (select ? "select" : "") + " " + className,
-                onClick: onClick
+                className: "safari-flex-button " + CSS_EXAMPLE_BUTTON + " " + (select ? "select" : "") + " " + (className || ""),
+                onClick: onClick || null
             }, name);
         };
         ExampleButton.propTypes = {
@@ -4399,6 +4401,16 @@ object-assign
             className: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string,
             select: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.bool,
             onClick: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.func
+        };
+        var ExampleStatus = function(_ref2) {
+            var _ref2$name = _ref2.name, name = void 0 === _ref2$name ? "" : _ref2$name, _ref2$className = _ref2.className, className = void 0 === _ref2$className ? "" : _ref2$className;
+            return index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+                className: CSS_EXAMPLE_STATUS + " " + (className || "")
+            }, name);
+        };
+        ExampleStatus.propTypes = {
+            name: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string,
+            className: __WEBPACK_IMPORTED_MODULE_2_prop_types___default.a.string
         };
         var ExampleModal = function(_PureComponent) {
             index_example__inherits(ExampleModal, _PureComponent);
@@ -4453,8 +4465,8 @@ object-assign
             width: "600px",
             height: "400px"
         } ];
-        function initExample(_ref2) {
-            var rootElement = _ref2.rootElement, _ref2$locale = _ref2.locale, locale = void 0 === _ref2$locale ? "en_US" : _ref2$locale;
+        function initExample(_ref3) {
+            var rootElement = _ref3.rootElement, _ref3$locale = _ref3.locale, locale = void 0 === _ref3$locale ? "en_US" : _ref3$locale;
             var editorStore = editorStore_createEditorStore();
             var _createStateStore = createStateStore({
                 locale: locale,
@@ -4467,8 +4479,8 @@ object-assign
             (0, _createStateStore.subscribe)(function(state) {
                 return renderExample(state);
             });
-            var showAlertModal = function(_ref3) {
-                var title = _ref3.title, message = _ref3.message;
+            var showAlertModal = function(_ref4) {
+                var title = _ref4.title, message = _ref4.message;
                 return setState({
                     modal: {
                         title: title,
@@ -4476,8 +4488,8 @@ object-assign
                     }
                 });
             };
-            var showPendingModal = function(_ref4) {
-                var pendingPromise = _ref4.pendingPromise, title = _ref4.title, message = _ref4.message;
+            var showPendingModal = function(_ref5) {
+                var pendingPromise = _ref5.pendingPromise, title = _ref5.title, message = _ref5.message;
                 return setState({
                     modal: {
                         pendingPromise: pendingPromise,
@@ -4535,8 +4547,18 @@ object-assign
                     }
                 });
             };
-            function renderExample(_ref5) {
-                var locale = _ref5.locale, isLock = _ref5.isLock, value = _ref5.value, isActive = _ref5.isActive, contentStyle = _ref5.contentStyle, modal = _ref5.modal;
+            var doToggleIsLock = function() {
+                return setState({
+                    isLock: !getState().isLock
+                });
+            };
+            var doToggleIsActive = function() {
+                return setState({
+                    isActive: !getState().isActive
+                });
+            };
+            function renderExample(_ref6) {
+                var locale = _ref6.locale, isLock = _ref6.isLock, value = _ref6.value, isActive = _ref6.isActive, contentStyle = _ref6.contentStyle, modal = _ref6.modal;
                 __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
                     className: CSS_EXAMPLE_ROOT
                 }, index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
@@ -4563,22 +4585,18 @@ object-assign
                     });
                 })), index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
                     className: "button-row"
-                }, index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ExampleButton, {
-                    name: "EditorToolbar: " + (isLock ? "Locked" : "Unlocked"),
-                    onClick: function() {
-                        return setState({
-                            isLock: !isLock
-                        });
-                    },
-                    select: !isLock
+                }, index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ExampleStatus, {
+                    name: "TinyMCEComponent: " + (isActive ? "Edit" : "Display")
+                }), index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ExampleStatus, {
+                    name: "Toolbar: " + (isLock ? "Locked" : "Unlocked")
                 }), index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ExampleButton, {
-                    name: "TinyMCEComponent: " + (isActive ? "Edit" : "Display"),
-                    onClick: function() {
-                        return setState({
-                            isActive: !isActive
-                        });
-                    },
+                    name: (isActive ? "End" : "Start") + " Editing",
+                    onClick: doToggleIsActive,
                     select: isActive
+                }), isActive && index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(ExampleButton, {
+                    name: (isLock ? "Unlock" : "Lock") + " Toolbar",
+                    onClick: doToggleIsLock,
+                    select: isLock
                 })), index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
                     className: "example-edit-toolbar"
                 }, index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Toolbar_Toolbar, {
@@ -4590,11 +4608,7 @@ object-assign
                 })), index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
                     className: "example-tiny-mce-content " + (isActive ? "edit" : "display"),
                     style: contentStyle,
-                    onDoubleClick: function() {
-                        return setState({
-                            isActive: !isActive
-                        });
-                    }
+                    onDoubleClick: isActive ? null : doToggleIsActive
                 }, index_example___WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(TinyMCE_TinyMCEComponent, {
                     editorStore: editorStore,
                     value: value,
@@ -9362,7 +9376,9 @@ object-assign
     }, function(module, exports) {
         module.exports = {
             "example-root": "DqnGqbcrgI6f",
-            "example-modal": "_3c8MoogDza-5"
+            "example-modal": "_3c8MoogDza-5",
+            "example-button": "hukLp637M0mJ",
+            "example-status": "G5GqAUv11xkM"
         };
     } ]);
 });

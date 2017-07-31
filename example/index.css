@@ -401,6 +401,16 @@ table[role="grid"].mce-grid td[role="gridcell"] > a:hover,
   border-bottom: 1px solid #eb5648;
 }
 
+._2E6XrFsno6MT > .Dky6Mdzotj3t.lock {
+  cursor: not-allowed;
+  border-bottom: 1px solid #d9d9d9
+}
+
+._2E6XrFsno6MT > .Dky6Mdzotj3t.lock > * {
+  pointer-events: none;
+  opacity: 0;
+}
+
 ._2E6XrFsno6MT > .Dky6Mdzotj3t > .item-select:hover,
       ._2E6XrFsno6MT > .Dky6Mdzotj3t > .item-select.open {
   background: transparent;
@@ -576,7 +586,24 @@ table[role="grid"].mce-grid td[role="gridcell"] > a:hover,
           transform: translate3d(0, 0, 0);
 }
 
-.DqnGqbcrgI6f .example-button {
+._3c8MoogDza-5 > .title {
+  padding: 14px 20px 8px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+._3c8MoogDza-5 > .content {
+  margin: 20px;
+  overflow-y: auto;
+  max-width: 480px;
+  max-height: 600px;
+  word-wrap: break-word;
+}
+
+.hukLp637M0mJ,
+.G5GqAUv11xkM {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -595,39 +622,30 @@ table[role="grid"].mce-grid td[role="gridcell"] > a:hover,
   padding: 0 4px;
   min-width: 40px;
   height: 40px;
-  color: #222;
+  color: #222
+}
+
+.hukLp637M0mJ + .hukLp637M0mJ, .G5GqAUv11xkM + .hukLp637M0mJ {
+  margin-left: 12px;
+}
+
+.hukLp637M0mJ + .G5GqAUv11xkM, .G5GqAUv11xkM + .G5GqAUv11xkM {
+  margin-left: 12px;
+}
+
+.hukLp637M0mJ {
   background: #ccc
 }
 
-.DqnGqbcrgI6f .example-button:hover {
-  background: #eee;
+.hukLp637M0mJ:hover {
+  background: #ddd;
 }
 
-.DqnGqbcrgI6f .example-button.select {
+.hukLp637M0mJ.select {
   background: #eee;
   -webkit-box-shadow: inset 0 0 0 1px #d9d9d9;
           box-shadow: inset 0 0 0 1px #d9d9d9;
   border-bottom: 2px solid #f55d54;
-}
-
-.DqnGqbcrgI6f .example-button + .example-button {
-  margin-left: 12px;
-}
-
-._3c8MoogDza-5 > .title {
-  padding: 14px 20px 8px;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  border-bottom: 1px solid #d9d9d9;
-}
-
-._3c8MoogDza-5 > .content {
-  margin: 20px;
-  overflow-y: auto;
-  max-width: 480px;
-  max-height: 600px;
-  word-wrap: break-word;
 }
 
 /* tooltip */
