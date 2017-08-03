@@ -1,6 +1,6 @@
 {
   "name": "mb-react-tinymce",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "author": "mockingbot",
   "license": "MIT",
   "repository": {
@@ -26,7 +26,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "cross-env": "^5.0.1",
+    "cross-env": "^5.0.2",
     "css-loader": "^0.28.4",
     "eslint": "^4.3.0",
     "eslint-config-standard": "^10.2.1",

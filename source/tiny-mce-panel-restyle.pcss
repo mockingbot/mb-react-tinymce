@@ -9,7 +9,7 @@
   --color-inactive: #bbb;
   --dialog-item-height: 30px;
   --dialog-item-text-height: 20px;
-  --insert-table-item-count: 8;
+  --insert-table-item-count: 6;
 }
 
 /* TODO: remove this when we have a sane project manager, instead of a fake */
@@ -31,19 +31,21 @@
     text-overflow: ellipsis;
   }
 
+  & .mce-combobox.mce-colorbox,
   & .mce-checkbox {
     display: flex;
     align-items: center;
-    & > .mce-ico.mce-i-checkbox {
-      margin: 2px;
-      width: 10px;
-      height: 10px;
-      font-size: 10px;
-      line-height: 12px;
-      border: 1px solid var(--color-primary);
-      color: var(--color-primary);
-      background: transparent;
-    }
+  }
+
+  & .mce-checkbox > .mce-ico.mce-i-checkbox {
+    margin: 2px;
+    width: 10px;
+    height: 10px;
+    font-size: 10px;
+    line-height: 12px;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    background: transparent;
   }
 
   & .mce-textbox,
@@ -70,7 +72,7 @@
     background: transparent;
     & > button {
       position: relative;
-      margin: 5px;
+      margin-left: 5px;
       padding: 0;
       width: 18px;
       height: 18px;
@@ -179,8 +181,14 @@ div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .m
         & .mce-combobox.mce-colorbox > input { min-width: 64px; max-width: 64px; }
       }
 
-      /* HACK: to hide table border attribute edit */
-      & > .mce-form:nth-child(2) > div > .mce-form > div > .mce-form > div > .mce-formitem:nth-child(6) { display: none; }
+      & > .mce-form:nth-child(2) > div > .mce-form > div > .mce-form > div {
+        /* HACK: to hide table cell spacing */
+        & > .mce-formitem:nth-child(4) { display: none; }
+        /* HACK: to hide table cell padding */
+        & > .mce-formitem:nth-child(5) { display: none; }
+        /* HACK: to hide table border attribute edit */
+        & > .mce-formitem:nth-child(6) { display: none; }
+      }
 
       /* HACK: to hide direct table CSS style edit */
       & > .mce-form:nth-child(3) > div > .mce-formitem:nth-child(2) { display: none; }

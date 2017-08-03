@@ -13,6 +13,8 @@ const DEFAULT_EDITOR_CONFIG = {
   toolbar: 'insert',
   insert_button_items: 'inserttable link image',
   default_link_target: '_blank',
+
+  // TODO: NOTE: setting `borderSpacing: '0', borderCollapse: 'separate'` will mask table setting for cell spacing & padding
   table_default_styles: { tableLayout: 'fixed', width: '400px', border: '1px solid #999', borderSpacing: '0', borderCollapse: 'separate' }
 }
 
@@ -43,9 +45,9 @@ const createEditor = (editorStore, editorElementRef, locale, value) => {
 }
 
 const deleteEditor = (editorStore) => {
-  if (editorStore.getState() === DEFAULT_EDITOR_STATE) return null
-  __DEV__ && console.log('REMOVE_TINY_MCE_EDITOR')
   const { editorRef } = editorStore.getState()
+  if (!editorRef) return
+  __DEV__ && console.log('REMOVE_TINY_MCE_EDITOR')
   const value = editorRef.getContent()
   editorRef.remove() // TINY_MCE.EditorManager.remove(editorRef)
   editorStore.setState(DEFAULT_EDITOR_STATE)

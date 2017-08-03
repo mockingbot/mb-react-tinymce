@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
-import { DEFAULT_EDITOR_STATE } from './state'
 import { createEditor, deleteEditor, createEditorStore } from './editorStore'
 
 import LocalClassName from './index.pcss'
@@ -11,9 +10,9 @@ const CSS_TINY_MCE_COMPONENT = LocalClassName[ 'tiny-mce-component' ]
 
 class TinyMCEComponent extends PureComponent {
   static propTypes = {
-    editorStore: PropTypes.object.isRequired,
+    editorStore: PropTypes.object,
     value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired, // possible value change
+    onChange: PropTypes.func, // possible value change
     isActive: PropTypes.bool, // toggle editor
     locale: PropTypes.string
   }
@@ -27,18 +26,20 @@ class TinyMCEComponent extends PureComponent {
 
   doCreateEditor () {
     const { editorStore, locale, value } = this.props
+    if (!editorStore) return
     createEditor(editorStore, this.divElement, locale, value)
   }
 
   doRemoveEditor () {
     const { editorStore, value, onChange } = this.props
+    if (!editorStore) return
     const nextValue = deleteEditor(editorStore)
-    value !== nextValue && onChange(nextValue)
+    onChange && nextValue !== undefined && nextValue !== value && onChange(nextValue)
   }
 
   componentDidMount () { this.props.isActive && this.doCreateEditor() }
 
-  componentWillUnmount () { this.props.editorStore.getState() !== DEFAULT_EDITOR_STATE && this.doRemoveEditor() }
+  componentWillUnmount () { this.doRemoveEditor() }
 
   componentDidUpdate (prevProps) {
     if (this.props.isActive === prevProps.isActive) return
