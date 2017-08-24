@@ -204,6 +204,11 @@ const showMenuInsertLink = () => {
   const menuItemInsertLink = document.querySelector('[role="menuitem"] > .mce-i-link').parentElement
   if (!menuItemInsertLink) return
   menuItemInsertLink.click() // fake click the menu item
+
+  setTimeout(() => {
+    const inputHref = document.querySelector('div[role="dialog"][aria-label="Insert link"] > div[role="application"] > .mce-window-body > .mce-form > div > .mce-formitem > div > div.mce-combobox > input.mce-textbox')
+    if (inputHref && !inputHref.value) inputHref.value = 'https://'
+  }, 0)
 }
 
 const showMenuInsert = () => {

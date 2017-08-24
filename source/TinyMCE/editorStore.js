@@ -12,8 +12,12 @@ const DEFAULT_EDITOR_CONFIG = {
   menubar: false,
   toolbar: 'insert',
   insert_button_items: 'inserttable link image',
-  default_link_target: '_blank',
 
+  // link plugin
+  default_link_target: '_blank',
+  target_list: false,
+
+  // table plugin
   // TODO: NOTE: setting `borderSpacing: '0', borderCollapse: 'separate'` will mask table setting for cell spacing & padding
   table_default_styles: { tableLayout: 'fixed', width: '400px', border: '1px solid #999', borderSpacing: '0', borderCollapse: 'separate' }
 }
