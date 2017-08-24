@@ -3733,6 +3733,7 @@ object-assign
             toolbar: "insert",
             insert_button_items: "inserttable link image",
             default_link_target: "_blank",
+            target_list: !1,
             table_default_styles: {
                 tableLayout: "fixed",
                 width: "400px",
@@ -4308,7 +4309,13 @@ object-assign
         var showMenuInsertLink = function() {
             showMenuInsert();
             var menuItemInsertLink = document.querySelector('[role="menuitem"] > .mce-i-link').parentElement;
-            menuItemInsertLink && menuItemInsertLink.click();
+            if (menuItemInsertLink) {
+                menuItemInsertLink.click();
+                setTimeout(function() {
+                    var inputHref = document.querySelector('div[role="dialog"][aria-label="Insert link"] > div[role="application"] > .mce-window-body > .mce-form > div > .mce-formitem > div > div.mce-combobox > input.mce-textbox');
+                    inputHref && !inputHref.value && (inputHref.value = "https://");
+                }, 0);
+            }
         };
         var showMenuInsert = function() {
             var menuItemInsert = document.querySelector('[role="presentation"] > .mce-i-insert').parentElement;
