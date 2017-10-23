@@ -1,11 +1,11 @@
 // This is a pre-compile script, used to generate script / data for app
 // This file should not be referenced from React code
 
-const NodeModulePath = require('path')
-const NodeModuleFS = require('fs')
+const nodeModulePath = require('path')
+const nodeModuleFs = require('fs')
 const MessageFormat = require('messageformat')
 
-const OUTPUT_DIRECTORY_PATH = NodeModulePath.resolve(__dirname, './source/__utils__/translation')
+const OUTPUT_DIRECTORY_PATH = nodeModulePath.resolve(__dirname, './source/__utils__/translation')
 
 const LOCALE_LIST = [ 'zh_CN', 'en_US' ]
 const TRANSLATION_LIST_MAP = {
@@ -28,7 +28,7 @@ const TRANSLATION_LIST_MAP = {
   'default': [ '文本缺失', 'Translation Missing' ] // use when above keys all missed
 }
 
-function compileLocaleData (locale, data, debugMessage = '') {
+const compileLocaleData = (locale, data, debugMessage = '') => {
   try {
     return new MessageFormat(locale).compile(data).toString()
   } catch (error) {
@@ -39,7 +39,7 @@ function compileLocaleData (locale, data, debugMessage = '') {
   }
 }
 
-function repackTranslation (localList, translationListMap) {
+const repackTranslation = (localList, translationListMap) => {
   const localeCount = localList.length
   if (!localeCount) throw new Error(`localeCount: ${localeCount}, localList: ${localList}`)
 
@@ -54,14 +54,14 @@ function repackTranslation (localList, translationListMap) {
   return localList.map((locale, i) => ({ locale, data: repackList[ i ] }))
 }
 
-function compileAndOutput (translationDataList, outputDirectoryPath) {
-  if (!NodeModuleFS.existsSync(outputDirectoryPath)) NodeModuleFS.mkdirSync(outputDirectoryPath)
+const compileAndOutput = (translationDataList, outputDirectoryPath) => {
+  if (!nodeModuleFs.existsSync(outputDirectoryPath)) nodeModuleFs.mkdirSync(outputDirectoryPath)
 
   // output each locale file
   const promiseList = translationDataList.map(({ locale, data }) => {
     const compiledString = `/* eslint-disable */\nexport default (() => { ${compileLocaleData(locale, data, '[compileAndOutput]')} })()`
-    const outputLocaleFilePath = NodeModulePath.join(outputDirectoryPath, `locale_${locale}.js`)
-    return new Promise((resolve, reject) => NodeModuleFS.writeFile(
+    const outputLocaleFilePath = nodeModulePath.join(outputDirectoryPath, `locale_${locale}.js`)
+    return new Promise((resolve, reject) => nodeModuleFs.writeFile(
       outputLocaleFilePath,
       compiledString,
       (error) => error ? reject(error) : resolve(outputLocaleFilePath)
@@ -69,8 +69,8 @@ function compileAndOutput (translationDataList, outputDirectoryPath) {
   })
 
   // output index file
-  const outputIndexFilePath = NodeModulePath.join(outputDirectoryPath, `index.js`)
-  promiseList.push(new Promise((resolve, reject) => NodeModuleFS.writeFile(
+  const outputIndexFilePath = nodeModulePath.join(outputDirectoryPath, `index.js`)
+  promiseList.push(new Promise((resolve, reject) => nodeModuleFs.writeFile(
     outputIndexFilePath,
     `/* eslint-disable */\n` +
     translationDataList.map(({ locale }) => `import ${locale} from './locale_${locale}'\n`).join('') +

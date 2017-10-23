@@ -7,28 +7,20 @@ const { NODE_ENV = 'production' } = process.env
 const IS_PRODUCTION = NODE_ENV === 'production'
 
 const OPTIONS = {
-  BABEL_LOADER: IS_PRODUCTION
-    ? { presets: [ [ 'es2015', { modules: false } ], 'stage-0', 'react' ] }
-    : { presets: [ 'stage-0', 'react' ] },
-  CSS_LOADER: IS_PRODUCTION
-    ? { importLoaders: 1, localIdentName: '[hash:base64:12]' }
-    : { importLoaders: 1, localIdentName: '[name]_[local]_[hash:base64:5]' },
+  BABEL_LOADER: {
+    babelrc: false,
+    presets: [ [ 'env', { targets: IS_PRODUCTION ? '>= 5%' : { browser: 'last 2 Chrome versions' }, modules: false } ], 'react' ],
+    plugins: [ 'transform-class-properties', 'transform-object-rest-spread' ]
+  },
+  CSS_LOADER: { importLoaders: 1, localIdentName: IS_PRODUCTION ? '[hash:base64:12]' : '[name]_[local]_[hash:base64:5]' },
   POSTCSS_LOADER: { plugins: () => [ require('postcss-cssnext') ] }
 }
 
 module.exports = {
-  resolve: {
-    alias: { source: nodeModulePath.resolve(__dirname, '../source') }
-  },
+  resolve: { alias: { source: nodeModulePath.resolve(__dirname, '../source') } },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          { loader: 'babel-loader', options: OPTIONS.BABEL_LOADER }
-        ]
-      },
+      { test: /\.js$/, exclude: /node_modules/, use: [ { loader: 'babel-loader', options: OPTIONS.BABEL_LOADER } ] },
       {
         test: /\.pcss$/,
         use: ExtractTextPlugin.extract({
@@ -40,13 +32,13 @@ module.exports = {
       }
     ]
   },
-  plugins: [].concat(
+  plugins: [
     new ExtractTextPlugin('index.css'),
     new DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
       '__DEV__': !IS_PRODUCTION
     }),
-    IS_PRODUCTION ? [
+    ...(IS_PRODUCTION ? [
       new ModuleConcatenationPlugin(),
       new UglifyJsPlugin({
         beautify: true,
@@ -75,6 +67,6 @@ module.exports = {
       }),
       new BannerPlugin({ banner: '/* eslint-disable */', raw: true, test: /\.js$/, entryOnly: false }),
       new BannerPlugin({ banner: '/* stylelint-disable */', raw: true, test: /\.css$/, entryOnly: false })
-    ] : []
-  )
+    ] : [])
+  ]
 }

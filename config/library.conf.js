@@ -1,9 +1,10 @@
 const nodeModulePath = require('path')
 const config = require('./common.conf')
 
-module.exports = Object.assign(config, {
-  bail: true, // Don't attempt to continue if there are any errors.
+module.exports = {
+  ...config,
   entry: { 'index': './source/index' },
+  bail: true, // Don't attempt to continue if there are any errors.
   output: {
     path: nodeModulePath.join(__dirname, '../library/'),
     filename: '[name].js',
@@ -15,4 +16,4 @@ module.exports = Object.assign(config, {
     'react-dom': 'react-dom',
     'prop-types': 'prop-types'
   }
-})
+}
