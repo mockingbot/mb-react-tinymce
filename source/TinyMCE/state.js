@@ -37,9 +37,9 @@ const getEditorStatus = (editorRef) => BOOLEAN_STATUS_LIST.reduce((status, name)
   status[ name ] = editorRef.queryCommandState(name)
   return status
 }, {
-  fontSize: `${parseInt(editorRef.queryCommandValue('fontSize')) || ''}`,
-  // this actually calls document.queryCommandValue('foreColor'), and the result is in rgb() format
-  foreColor: getHexFromRGBColor(editorRef.queryCommandValue('foreColor')) || ''
+  fontSize: String(parseInt(editorRef.queryCommandValue('fontSize'))) || '',
+  // TODO: CHECK: this actually calls document.queryCommandValue('foreColor'), and the result we see is in rgb() format
+  foreColor: getHexFromRGBColor(editorRef.queryCommandValue('foreColor') || '')
 })
 
 export {

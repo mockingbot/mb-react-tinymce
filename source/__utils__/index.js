@@ -27,10 +27,10 @@ const createStateStore = (state) => {
   return { getState, setState, subscribe, unsubscribe }
 }
 
-const getHexFromRGBColor = (rgbColor) => {
+const getHexFromRGBColor = (rgbColor = '') => {
   if (rgbColor.startsWith('#')) return rgbColor
   const result = rgbRegexp.exec(rgbColor)
-  return result ? `#${parseHex(result[ 1 ])}${parseHex(result[ 2 ])}${parseHex(result[ 3 ])}` : null
+  return result ? `#${parseHex(result[ 1 ])}${parseHex(result[ 2 ])}${parseHex(result[ 3 ])}` : ''
 }
 const rgbRegexp = /rgba?\(([\d ]+),([\d ]+),([\d ]+),?([\d ]+)?\)/
 const parseHex = (integerString) => {

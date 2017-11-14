@@ -1,5 +1,6 @@
 /.*
 /*.tgz
+/*.lock
 /config
 /source
 /example
