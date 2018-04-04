@@ -1,8 +1,0 @@
-/.*
-/*.tgz
-/*.lock
-/config
-/source
-/example
-/stats.json
-/__generate_translation__.js

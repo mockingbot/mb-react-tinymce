@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, user-scalable=0">
-    <title>Example</title>
-    <!-- static file -->
-    <script src="tinymce/tinymce.min.js"></script>
-    <link rel="stylesheet" href="mb-icons/mb-icons.css">
-    <style>
-        /* basic reset */
-        *, *::before, *::after { box-sizing: border-box; }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, user-scalable=0">
+  <title>Example</title>
+  <!-- static file -->
+  <script src="tinymce/tinymce.min.js"></script>
+  <link rel="stylesheet" href="mb-icons/mb-icons.css">
+  <style>
+    /* basic reset */
+    *, *::before, *::after { box-sizing: border-box; }
 
-        html, body { width: 100%; height: 100%; overflow: hidden; font-size: 16px; }
+    html, body { width: 100%; height: 100%; overflow: hidden; font-size: 16px; }
 
-        html, body, div, p, button, textarea { margin: 0; padding: 0; font-family: "Helvetica Neue", "Hiragino Sans GB", "Microsoft Yahei", Helvetica, Arial, sans-serif; }
+    html, body, div, p, button, textarea { margin: 0; padding: 0; font-family: "Helvetica Neue", "Hiragino Sans GB", "Microsoft Yahei", Helvetica, Arial, sans-serif; }
 
-        button, textarea, .safari-flex-button { border: 0; background: transparent; outline-color: #f55d54; }
+    button, textarea, .safari-flex-button { border: 0; background: transparent; outline-color: #f55d54; }
 
-        button { cursor: pointer; font-size: inherit; color: inherit; }
+    button { cursor: pointer; font-size: inherit; color: inherit; }
 
-        textarea { outline: none; resize: none; }
+    textarea { outline: none; resize: none; }
 
-        .safari-flex-button { cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .safari-flex-button { cursor: pointer; display: flex; align-items: center; justify-content: center; }
 
-        /* webkit-scrollbar */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
+    /* webkit-scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
 
-        ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.18); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.18); border-radius: 3px; }
 
-        ::-webkit-scrollbar, ::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece, ::-webkit-scrollbar-corner, ::-webkit-resizer { background: transparent; }
+    ::-webkit-scrollbar, ::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece, ::-webkit-scrollbar-corner, ::-webkit-resizer { background: transparent; }
 
-        /* specific */
-        #root { width: 100%; height: 100%; }
-    </style>
-    <!-- webpack generated -->
-    <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
+    /* specific */
+    #root { width: 100%; height: 100%; }
+  </style>
+  <!-- webpack generated -->
+  <link rel="stylesheet" href="index.css">
+  <script src="index.js"></script>
 </head>
 
 <body>
 <div id="root"></div>
 <script>
-  const { getState, setState, renderExample, editorStore } = MB_REACT_TINYMCE.initExample({
+  const { initExample } = window.MB_REACT_TINYMCE
+  const { getState, setState, renderExample, editorStore } = initExample({
     rootElement: document.querySelector('#root'),
     locale: `${window.navigator.language}` // 'zh_CN' | 'en_US'
   })

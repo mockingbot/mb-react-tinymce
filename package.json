@@ -1,34 +1,42 @@
 {
+  "private": true,
   "name": "mb-react-tinymce",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "author": "mockingbot",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mockingbot/mb-react-tinymce.git"
-  },
+  "repository": "https://github.com/mockingbot/mb-react-tinymce.git",
   "main": "library/index.js",
   "scripts": {
-    "example": "cross-env NODE_ENV=production webpack --watch --config config/example.conf.js",
-    "example-watch": "cross-env NODE_ENV=development webpack --watch --config config/example.conf.js",
-    "library": "cross-env NODE_ENV=production webpack --config config/library.conf.js",
-    "library-watch": "cross-env NODE_ENV=production webpack --watch --config config/library.conf.js",
-    "webpack-stats": "cross-env NODE_ENV=production webpack -p --config config/library.conf.js --json > stats.json",
-    "generate-translation": "node __generate_translation__.js",
-    "build": "npm run generate-translation && npm run library",
-    "start": "npm run generate-translation && npm run example-watch",
-    "prepare": "npm run build"
+    "// script ======================": "",
+    "script-base": "babel-node ./script quiet",
+    "script-pack": "babel-node ./script quiet pack",
+    "script-publish": "babel-node ./script pack publish",
+    "script-publish-dev": "babel-node ./script pack publish-dev",
+    "script-generate-spec": "babel-node ./script/generateSpec",
+    "script-generate-t9n": "babel-node ./script/generateTranslation",
+    "// build-dev ===================": "",
+    "build-library-dev": "npm run build-library -- watch",
+    "build-example-dev": "npm run build-example -- watch",
+    "// build =======================": "",
+    "build-library": "babel-node ./script/webpack production profile",
+    "build-module": "babel-node ./script/webpack production profile module",
+    "build-example": "babel-node ./script/webpack development example",
+    "// =============================": "",
+    "analyze-stat-library": "webpack-bundle-analyzer ./profile-stat-library-gitignore.json",
+    "analyze-stat-module": "webpack-bundle-analyzer ./profile-stat-module-gitignore.json",
+    "prepack": "echo \"Error: should run pack with script-*\" && exit 1"
   },
   "devDependencies": {
-    "dev-dep-web-react-postcss": "^0.0.6",
-    "messageformat": "^1.0.2",
-    "prop-types": "^15.6.0",
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "dev-dep-tool": "0.2.0-dev.2",
+    "dev-dep-web-react-postcss": "0.2.0-dev.0",
+    "messageformat": "^1.1.1",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "webpack-bundle-analyzer": "^2.11.1"
   },
   "peerDependencies": {
     "prop-types": "*",
-    "react": "*",
-    "react-dom": "*"
+    "react": "*"
   }
 }
