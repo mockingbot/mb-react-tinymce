@@ -40,12 +40,7 @@ const compileAndOutput = (translationDataList, outputDirectoryPath) => {
   // output each locale file
   const outputFileList = translationDataList.map(({ locale, data }) => {
     const outputLocaleFilePath = resolve(outputDirectoryPath, `locale_${locale}.js`)
-    writeFileSync(outputLocaleFilePath, [
-      `/* eslint-disable */`,
-      `export default (() => {`,
-      compileLocaleData(locale, data, '[compileAndOutput]'),
-      `})()`
-    ].join('\n'))
+    writeFileSync(outputLocaleFilePath, `/* eslint-disable */\n${compileLocaleData(locale, data)}\n`)
     return outputLocaleFilePath
   })
 

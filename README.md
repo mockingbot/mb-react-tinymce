@@ -1,10 +1,23 @@
 # mb-react-tinymce
 
+[![i:npm]][l:npm]
+[![i:size]][l:size]
+[![i:lint]][l:lint]
+[![i:npm-dev]][l:npm]
+
+[Online DEMO](https://mockingbot.github.io/mb-react-tinymce/)
+
+[i:npm]: https://img.shields.io/npm/v/mb-react-tinymce.svg?colorB=blue
+[i:npm-dev]: https://img.shields.io/npm/v/mb-react-tinymce/dev.svg
+[l:npm]: https://www.npmjs.com/package/mb-react-tinymce
+[i:size]: https://packagephobia.now.sh/badge?p=mb-react-tinymce
+[l:size]: https://packagephobia.now.sh/result?p=mb-react-tinymce
+[i:lint]: https://img.shields.io/badge/code_style-standard_ES6+-yellow.svg
+[l:lint]: https://standardjs.com
+
 Try to deal with:
 * Warp `TinyMCE` into `React Component`
 * Also provides a hackable EditorToolbar Component
-
-[Online DEMO](https://mockingbot.github.io/mb-react-tinymce/)
 
 #### Basic Usage
 
@@ -16,15 +29,10 @@ Check code to init example at:
 - `source/index.example.js`
 - `example/index.html`
 
-this package requires: 
-
-```js
-const TINY_MCE = window.tinyMCE || window.tinymce // TinyMCE needs to be loaded
-```
+this package expects `TinyMCE` to be loaded as: `window.tinyMCE || window.tinymce`
 
 this package exports: 
-
-```js
+```
 export {
   createEditorStore,
   TinyMCEComponent,
