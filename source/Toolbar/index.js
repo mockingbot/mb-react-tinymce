@@ -1,12 +1,35 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import { TRANSLATE, MockingBotIcon } from 'source/__utils__'
 import { Select, SelectV2 } from './Select'
 
-import LocalClassName from './index.pcss'
-const CSS_TOOLBAR = LocalClassName[ 'toolbar' ]
-const CSS_TOOLBAR_BUTTON = LocalClassName[ 'toolbar-button' ]
+const COLOR_SELECT = 'rgba(0, 0, 0, 0.06)'
+const COLOR_HOVER = 'rgba(0, 0, 0, 0.04)'
+const COLOR_TEXT_80 = '#525E71'
+const COLOR_INACTIVE = '#BBB'
+
+const ToolbarDiv = styled.div`
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  padding: 0 2px;
+
+  & > .TINY_MCE_FIXED_TOOLBAR { width: 0; opacity: 0; pointer-events: none; }
+`
+
+const ToolbarButtonDiv = styled.div`
+  margin: 0 1px;
+  width: 30px;
+  height: 22px;
+  font-size: 16px;
+  color: ${COLOR_TEXT_80};
+  &:hover { background: ${COLOR_HOVER}; }
+  &.select { background: ${COLOR_SELECT}; }
+  &.lock { cursor: not-allowed; color: ${COLOR_INACTIVE}; }
+  &.lock, &.lock:hover { background: transparent; }
+`
 
 class Toolbar extends PureComponent {
   static propTypes = {
@@ -97,7 +120,7 @@ class Toolbar extends PureComponent {
     const { isLock: isLockProps, className } = this.props
     const { editorRef, editorStatus } = this.state
     const isLock = isLockProps || !editorRef
-    return <div className={`${CSS_TOOLBAR} TINY_MCE_CUSTOM_UI ${className || ''}`} onMouseDown={muteEvent} tabIndex="-1">
+    return <ToolbarDiv className={`TINY_MCE_CUSTOM_UI ${className || ''}`} onMouseDown={muteEvent} tabIndex="-1">
       {this.selectMap.fontSize(FONT_SIZE_ITEM_LIST, FONT_SIZE_ITEM_LIST.indexOf(editorStatus.fontSize), isLock)}
 
       {this.buttonMap.bold(editorStatus.bold, isLock)}
@@ -120,7 +143,7 @@ class Toolbar extends PureComponent {
 
       {/* The real upload button */}
       <input ref={this.setInputFileElementRef} type="file" accept="image/png,image/jpeg,image/gif" hidden />
-    </div>
+    </ToolbarDiv>
   }
 }
 
@@ -130,13 +153,13 @@ const muteEvent = (event) => {
   return false
 }
 
-const createToolbarStatusButton = (command, onClick = null) => (isSelect, isLock) => <div
-  className={`safari-flex-button ${CSS_TOOLBAR_BUTTON} ${isSelect ? 'select' : ''} ${isLock ? 'lock' : 'tooltip-top'}`}
+const createToolbarStatusButton = (command, onClick = null) => (isSelect, isLock) => <ToolbarButtonDiv
+  className={`safari-flex-button ${isSelect ? 'select' : ''} ${isLock ? 'lock' : 'tooltip-top'}`}
   onClick={isLock ? null : onClick}
   data-tooltip-content={TRANSLATE(`TinyMCE:${command}`)}
 >
   <MockingBotIcon name={command} />
-</div>
+</ToolbarButtonDiv>
 
 const createToolbarSelect = ({ renderItem, renderSelectItem, onChange, className, tooltip }) => (itemList, selectItemIndex, isLock) => <Select
   className={className}

@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "mb-react-tinymce",
-  "version": "3.0.0-dev.0",
+  "version": "3.0.0-dev.1",
   "author": "mockingbot",
   "license": "MIT",
   "repository": "github:mockingbot/mb-react-tinymce",
@@ -20,7 +20,7 @@
     "// build =======================": "",
     "build-library": "babel-node ./script/webpack production profile",
     "build-module": "babel-node ./script/webpack production profile module",
-    "build-example": "babel-node ./script/webpack development example",
+    "build-example": "babel-node ./script/webpack production example",
     "// =============================": "",
     "analyze-stat": "npx webpack-bundle-analyzer .temp-gitignore/profile-stat.json",
     "analyze-stat-module": "npx webpack-bundle-analyzer .temp-gitignore/profile-stat.module.json",
@@ -28,14 +28,15 @@
   },
   "peerDependencies": {
     "prop-types": "^15.6",
-    "react": "^16"
+    "react": "^16",
+    "styled-components": "^4"
   },
   "devDependencies": {
-    "dev-dep-tool": "0.4.1-dev.0",
-    "dev-dep-web-react-postcss": "^0.4.0",
-    "messageformat": "^2.0.4",
+    "dr-dev": "0.0.1",
+    "dr-dev-web-react-styled-components": "0.0.1",
+    "messageformat": "^2.0.5",
     "prop-types": "^15.6.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
   }
 }

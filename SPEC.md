@@ -3,8 +3,10 @@
 * [Export Path](#export-path)
 
 #### Export Path
++ 📄 [source/TinyMCEPanelRestyle.js](source/TinyMCEPanelRestyle.js)
+  - `TinyMCEPanelRestyleGlobalStyle`
 + 📄 [source/index.js](source/index.js)
-  - `GET_LOCALE`, `LOCALE_LIST`, `SET_LOCALE`, `TinyMCEComponent`, `Toolbar`, `createEditorStore`
+  - `GET_LOCALE`, `LOCALE_LIST`, `SET_LOCALE`, `TinyMCEComponent`, `TinyMCEPanelRestyleGlobalStyle`, `Toolbar`, `createEditorStore`
 + 📄 [source/index.example.js](source/index.example.js)
   - `initExample`
 + 📄 [source/\_\_utils\_\_/CSSIcon.js](source/__utils__/CSSIcon.js)

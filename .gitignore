@@ -16,4 +16,3 @@ node_modules
 # generated
 /source/__utils__/translation
 /example/index.js
-/example/index.css

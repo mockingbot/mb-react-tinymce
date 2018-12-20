@@ -1,10 +1,29 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import { createEditor, deleteEditor, createEditorStore } from './editorStore'
 
-import LocalClassName from './index.pcss'
-const CSS_TINY_MCE_COMPONENT = LocalClassName[ 'tiny-mce-component' ]
+// const COLOR_PRIMARY = '#EB5648'
+const COLOR_SELECTION = 'rgba(235, 85, 71, 0.4)' // 'color(var(--color-primary) a(0.4))'
+const COLOR_TEXT_80 = '#525E71'
+
+const TinyMCEComponentDiv = styled.div`
+  padding: 2px;
+  font-size: 12px;
+  color: ${COLOR_TEXT_80};
+  & *::selection { background: ${COLOR_SELECTION}; }
+
+  & ol,
+  & ul { margin: 1em 0; padding-left: 2em; }
+
+  & table {
+    & td,
+    & th,
+    & caption { border: 1px dashed #bbb; }
+    & tr:nth-child(even) { background: #eee; }
+  }
+`
 
 // TODO: NOTE: picked from https://github.com/instructure-react/react-tinymce/blob/4bddd289b474c09e621e02e33b3989aad36b38f4/lib/components/TinyMCE.js
 
@@ -48,11 +67,8 @@ class TinyMCEComponent extends PureComponent {
 
   render () {
     const { value } = this.props
-    return <div ref={this.setElementRef} className={CSS_TINY_MCE_COMPONENT} dangerouslySetInnerHTML={{ __html: value }} />
+    return <TinyMCEComponentDiv ref={this.setElementRef} dangerouslySetInnerHTML={{ __html: value }} />
   }
 }
 
-export {
-  TinyMCEComponent,
-  createEditorStore
-}
+export { TinyMCEComponent, createEditorStore }

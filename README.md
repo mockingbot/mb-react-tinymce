@@ -9,7 +9,7 @@
 
 [i:npm]: https://img.shields.io/npm/v/mb-react-tinymce.svg?colorB=blue
 [i:npm-dev]: https://img.shields.io/npm/v/mb-react-tinymce/dev.svg
-[l:npm]: https://www.npmjs.com/package/mb-react-tinymce
+[l:npm]: https://npm.im/package/mb-react-tinymce
 [i:size]: https://packagephobia.now.sh/badge?p=mb-react-tinymce
 [l:size]: https://packagephobia.now.sh/result?p=mb-react-tinymce
 [i:lint]: https://img.shields.io/badge/code_style-standard_ES6+-yellow.svg
@@ -39,7 +39,8 @@ export {
   Toolbar,
   LOCALE_LIST,
   GET_LOCALE,
-  SET_LOCALE
+  SET_LOCALE,
+  TinyMCEPanelRestyleGlobalStyle
 }
 ```
 

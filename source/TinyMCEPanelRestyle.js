@@ -1,21 +1,22 @@
-:root {
-  --color-select: rgba(0, 0, 0, 0.06);
-  --color-hover: rgba(0, 0, 0, 0.04);
-  --color-border: #d9d9d9;
-  --color-primary: #eb5648;
-  --color-primary-secondary: #f7827b;
-  --color-selection: color(var(--color-primary) a(0.4));
-  --color-text-80: #525e71;
-  --color-inactive: #bbb;
-  --dialog-item-height: 30px;
-  --dialog-item-text-height: 20px;
-  --insert-table-item-count: 6;
-}
+import { createGlobalStyle } from 'styled-components'
 
+const COLOR_SELECT = 'rgba(0, 0, 0, 0.06)'
+const COLOR_HOVER = 'rgba(0, 0, 0, 0.04)'
+const COLOR_BORDER = '#D9D9D9'
+const COLOR_PRIMARY = '#EB5648'
+const COLOR_PRIMARY_SECONDARY = '#F7827B'
+const COLOR_SELECTION = 'rgba(235, 85, 71, 0.4)' // 'color(var(--color-primary) a(0.4))'
+const COLOR_TEXT_80 = '#525E71'
+const COLOR_INACTIVE = '#BBB'
+const DIALOG_ITEM_HEIGHT = '30px'
+const DIALOG_ITEM_TEXT_HEIGHT = '20px'
+const INSERT_TABLE_ITEM_COUNT = '6'
+
+const TinyMCEPanelRestyleGlobalStyle = createGlobalStyle`
 /* TODO: remove this when we have a sane project manager, instead of a fake */
 
 .mce-panel.mce-floatpanel {
-  & *::selection { background: var(--color-selection); }
+  & *::selection { background: ${COLOR_SELECTION}; }
 
   & .mce-reset,
   & .mce-label,
@@ -24,7 +25,7 @@
   & .mce-textbox,
   & .mce-text-center {
     font-size: 12px;
-    color: var(--color-text-80);
+    color: ${COLOR_TEXT_80};
     font-family: -apple-system, "SF UI Text", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Zen Hei", sans-serif;
     overflow: hidden;
     white-space: nowrap;
@@ -43,27 +44,27 @@
     height: 10px;
     font-size: 10px;
     line-height: 12px;
-    border: 1px solid var(--color-primary);
-    color: var(--color-primary);
+    border: 1px solid ${COLOR_PRIMARY};
+    color: ${COLOR_PRIMARY};
     background: transparent;
   }
 
   & .mce-textbox,
   & .mce-listbox,
   & .mce-listbox > button {
-    min-height: var(--dialog-item-text-height) !important;
-    max-height: var(--dialog-item-text-height) !important;
+    min-height: ${DIALOG_ITEM_TEXT_HEIGHT} !important;
+    max-height: ${DIALOG_ITEM_TEXT_HEIGHT} !important;
     line-height: 14px;
   }
   & .mce-textbox,
   & .mce-listbox {
     box-sizing: border-box;
     border: 0;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid ${COLOR_BORDER};
     background: transparent;
-    &:hover { border-bottom: 1px solid var(--color-text-80); }
-    &:focus { border-bottom: 1px solid var(--color-primary); }
-    & > button[role="presentation"] > .mce-caret { border-top-color: var(--color-inactive); }
+    &:hover { border-bottom: 1px solid ${COLOR_TEXT_80}; }
+    &:focus { border-bottom: 1px solid ${COLOR_PRIMARY}; }
+    & > button[role="presentation"] > .mce-caret { border-top-color: ${COLOR_INACTIVE}; }
   }
 
   /* insert table - tab-color-combobox */
@@ -76,7 +77,7 @@
       padding: 0;
       width: 18px;
       height: 18px;
-      background: var(--color-border);
+      background: ${COLOR_BORDER};
       & > i.mce-ico { position: absolute; top: 1px; left: 1px; border: 1px solid #fff; }
     }
   }
@@ -96,12 +97,12 @@ div[role="dialog"] > div[role="application"] {
 
   & > .mce-window-head {
     padding: 5px 0 5px 10px;
-    border-bottom: 1px solid var(--color-border);
-    & > .mce-title { font-size: 12px; font-weight: normal; color: var(--color-text-80); }
+    border-bottom: 1px solid ${COLOR_BORDER};
+    & > .mce-title { font-size: 12px; font-weight: normal; color: ${COLOR_TEXT_80}; }
     & > .mce-close {
       width: 24px;
       height: 30px;
-      & > i.mce-ico { font-size: 10px; color: var(--color-primary); }
+      & > i.mce-ico { font-size: 10px; color: ${COLOR_PRIMARY}; }
     }
   }
 
@@ -114,8 +115,8 @@ div[role="dialog"] > div[role="application"] {
       margin: 0 auto;
       width: 100px;
       height: 30px;
-      background: var(--color-primary);
-      &:hover { background: var(--color-primary-secondary); }
+      background: ${COLOR_PRIMARY};
+      &:hover { background: ${COLOR_PRIMARY_SECONDARY}; }
       & .mce-txt { font-size: 14px; color: #fff; }
     }
   }
@@ -141,16 +142,16 @@ div[role="dialog"][aria-label="Insert link"] > div[role="application"] > .mce-wi
 /* insert table */
 div[role="dialog"][aria-label="Table properties"] > div[role="application"] > .mce-window-body {
   padding: 10px 0;
-  min-height: calc(var(--dialog-item-height) * var(--insert-table-item-count) + 20px);
+  min-height: calc(${DIALOG_ITEM_HEIGHT} * ${INSERT_TABLE_ITEM_COUNT} + 20px);
 
   & > .mce-container,
-  & > .mce-container > .mce-container-body { min-height: calc(var(--dialog-item-height) * var(--insert-table-item-count)); }
+  & > .mce-container > .mce-container-body { min-height: calc(${DIALOG_ITEM_HEIGHT} * ${INSERT_TABLE_ITEM_COUNT}); }
 
   & .mce-abs-layout,
   & .mce-abs-layout-item { position: relative; left: 0 !important; top: 0 !important; }
 
   & div.mce-abs-layout,
-  & div.mce-abs-layout-item { box-sizing: border-box; max-width: 220px; height: auto !important; min-height: var(--dialog-item-height); }
+  & div.mce-abs-layout-item { box-sizing: border-box; max-width: 220px; height: auto !important; min-height: ${DIALOG_ITEM_HEIGHT}; }
 
   & > .mce-container.mce-panel {
     /* insert table - tab */
@@ -217,7 +218,7 @@ div[role="dialog"][aria-label="Color"] > div[role="application"] > .mce-window-b
 
       & > .mce-colorpicker-sv { width: 160px; height: 160px; }
       & > .mce-colorpicker-h { width: 24px; height: 160px; }
-      & > .mce-colorpicker-h > .mce-colorpicker-h-marker { border: 1px solid var(--color-primary); }
+      & > .mce-colorpicker-h > .mce-colorpicker-h-marker { border: 1px solid ${COLOR_PRIMARY}; }
     }
 
     & > .mce-container.mce-form {
@@ -277,19 +278,22 @@ div[role="application"].mce-menu.mce-panel {
       align-items: center;
       margin: 0;
       padding: 0 6px;
-      height: var(--dialog-item-height);
+      height: ${DIALOG_ITEM_HEIGHT};
       border: 0;
-      &:hover { background: var(--color-hover); }
-      &.mce-active { background: var(--color-select); }
+      &:hover { background: ${COLOR_HOVER}; }
+      &.mce-active { background: ${COLOR_SELECT}; }
 
-      & .mce-text { color: var(--color-text-80); }
+      & .mce-text { color: ${COLOR_TEXT_80}; }
     }
-    & > div[role="separator"].mce-menu-item-sep { margin: 0; height: 0; border-bottom: 1px solid var(--color-border); }
+    & > div[role="separator"].mce-menu-item-sep { margin: 0; height: 0; border-bottom: 1px solid ${COLOR_BORDER}; }
   }
 }
 
 /* insert table - grid */
 table[role="grid"].mce-grid td[role="gridcell"] > a {
   &:hover,
-  &.mce-active { border-color: var(--color-primary); background: var(--color-primary); }
+  &.mce-active { border-color: ${COLOR_PRIMARY}; background: ${COLOR_PRIMARY}; }
 }
+`
+
+export { TinyMCEPanelRestyleGlobalStyle }
