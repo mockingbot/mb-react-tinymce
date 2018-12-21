@@ -2,7 +2,6 @@ import { resolve } from 'path'
 import { DefinePlugin } from 'webpack'
 
 import { argvFlag, runMain } from 'dr-dev/module/main'
-import { getLogger } from 'dr-dev/module/logger'
 import { compileWithWebpack, commonFlag } from 'dr-dev/module/webpack'
 
 const PATH_ROOT = resolve(__dirname, '..')
@@ -14,9 +13,8 @@ runMain(async (logger) => {
   const isModule = Boolean(argvFlag('module'))
   const isExample = Boolean(argvFlag('example'))
   const { mode, isWatch, isProduction, profileOutput, assetMapOutput } = await commonFlag({
-    argvFlag,
-    fromRoot,
     profileOutput: argvFlag('profile') ? fromRoot(isModule ? '.temp-gitignore/profile-stat.module.json' : '.temp-gitignore/profile-stat.json') : null,
+    fromRoot,
     logger
   })
 
@@ -61,4 +59,4 @@ runMain(async (logger) => {
 
   logger.log(`compile with webpack`, JSON.stringify({ isModule, isExample }, null, '  '))
   await compileWithWebpack({ config, isWatch, profileOutput, assetMapOutput, logger })
-}, getLogger(`webpack`, argvFlag('quiet')))
+}, 'webpack')

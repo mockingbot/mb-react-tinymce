@@ -3,9 +3,8 @@ import { readFileSync, writeFileSync } from 'fs'
 import { execSync } from 'child_process'
 
 import { argvFlag, runMain } from 'dr-dev/module/main'
-import { getLogger } from 'dr-dev/module/logger'
-import { getScriptFileListFromPathList } from 'dr-dev/module/fileList'
-import { initOutput, packOutput, publishOutput } from 'dr-dev/module/commonOutput'
+import { getScriptFileListFromPathList } from 'dr-dev/module/node/fileList'
+import { initOutput, packOutput, publishOutput } from 'dr-dev/module/output'
 import { getTerserOption, minifyFileListWithTerser } from 'dr-dev/module/minify'
 
 const PATH_ROOT = resolve(__dirname, '..')
@@ -56,4 +55,4 @@ runMain(async (logger) => {
 
   const pathPackagePack = await packOutput({ fromRoot, fromOutput, logger })
   await publishOutput({ flagList: process.argv, packageJSON, pathPackagePack, extraArgs: [ '--userconfig', '~/mockingbot.npmrc' ], logger })
-}, getLogger(process.argv.slice(2).join('+'), argvFlag('quiet')))
+})

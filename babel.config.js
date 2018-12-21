@@ -17,10 +17,7 @@ module.exports = {
     [ 'minify-replace', { replacements: [ { identifierName: '__DEV__', replacement: { type: 'booleanLiteral', value: isDev } } ] } ],
     [ 'module-resolver', {
       root: [ './' ],
-      alias: isModule ? undefined : {
-        'dr-dev/module/(.+)': 'dr-dev/library/',
-        'dr-js/module/(.+)': 'dr-js/library/'
-      }
+      alias: isModule ? undefined : { '^dr-([\\w-]+)/module/(.+)': 'dr-\\1/library/\\2' }
     } ]
   ].filter(Boolean),
   comments: false
