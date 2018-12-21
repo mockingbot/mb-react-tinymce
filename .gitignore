@@ -8,12 +8,7 @@ node_modules
 # WebStorm config
 .idea
 
-# gh-pages unrelated
-/.*
-/__*
+# distribute file
+**/*-gitignore/**
+**/*-gitignore*
 /*.tgz
-/*.json
-/config
-/source
-/library
-/README.md
